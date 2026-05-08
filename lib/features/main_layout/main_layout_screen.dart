@@ -4,6 +4,8 @@ import 'package:iconsax/iconsax.dart';
 import '../../core/theme/app_colors.dart';
 import '../home/home_screen.dart';
 import '../search/search_screen.dart';
+// --- TAMBAHKAN IMPORT INI ---
+import '../coaching/coaching_screen.dart'; 
 import 'package:google_fonts/google_fonts.dart';
 
 class MainLayoutScreen extends StatefulWidget {
@@ -17,10 +19,11 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
   int _currentIndex = 0;
   final PageController _pageController = PageController();
 
+  // --- UPDATE LIST SCREENS DI SINI ---
   final List<Widget> _screens = [
     const HomeScreen(),
     const SearchScreen(),
-    const Center(child: Text("Coaching")),
+    const CoachingScreen(), // Ganti teks Center sebelumnya dengan kelas ini
     const Center(child: Text("Course")),
     const Center(child: Text("Profile")),
   ];
@@ -28,7 +31,6 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Menggunakan extendBody agar konten di belakang navbar terlihat jika transparan
       extendBody: true, 
       backgroundColor: AppColors.background,
       body: PageView(
@@ -37,9 +39,8 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
         children: _screens,
       ),
       bottomNavigationBar: Container(
-        // Memberikan padding bawah agar tidak terlalu menempel ke navigasi sistem HP
         margin: EdgeInsets.fromLTRB(20.w, 0, 20.w, 25.h),
-        height: 75.h, // Tinggi navbar yang lebih proporsional
+        height: 75.h, 
         decoration: BoxDecoration(
           color: AppColors.black,
           borderRadius: BorderRadius.circular(40.r),
@@ -71,7 +72,7 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
             selectedLabelStyle: GoogleFonts.poppins(
               fontSize: 10.sp, 
               fontWeight: FontWeight.w500,
-              height: 1.5, // Memberi jarak antara icon dan text
+              height: 1.5, 
             ),
             unselectedLabelStyle: GoogleFonts.poppins(
               fontSize: 10.sp, 
