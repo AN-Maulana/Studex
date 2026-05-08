@@ -25,7 +25,6 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
     const HomeScreen(),
     const SearchScreen(),
     const CoachingScreen(), // Ganti teks Center sebelumnya dengan kelas ini
-    const Center(child: Text("Course")),
     const ProfileScreen(),
   ];
 
@@ -95,13 +94,13 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
               const BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.only(bottom: 4),
-                  child: Icon(Iconsax.search_normal),
+                  child: Icon(Iconsax.book),
                 ),
                 activeIcon: Padding(
                   padding: EdgeInsets.only(bottom: 4),
-                  child: Icon(Iconsax.search_normal_1),
+                  child: Icon(Iconsax.book_15),
                 ),
-                label: 'Search',
+                label: 'Course',
               ),
               const BottomNavigationBarItem(
                 icon: Padding(
@@ -113,17 +112,6 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
                   child: Icon(Iconsax.video_play5),
                 ),
                 label: 'Coaching',
-              ),
-              const BottomNavigationBarItem(
-                icon: Padding(
-                  padding: EdgeInsets.only(bottom: 4),
-                  child: Icon(Iconsax.book),
-                ),
-                activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 4),
-                  child: Icon(Iconsax.book_15),
-                ),
-                label: 'Course',
               ),
               const BottomNavigationBarItem(
                 icon: Padding(
