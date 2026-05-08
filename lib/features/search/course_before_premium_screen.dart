@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../core/constants/dummy_data.dart';
 import '../../core/theme/app_colors.dart';
+import '../pricing/pricing_screen.dart';
 
 class CourseBeforePremiumScreen extends StatelessWidget {
   const CourseBeforePremiumScreen({super.key});
@@ -283,21 +284,33 @@ class CourseBeforePremiumScreen extends StatelessWidget {
       bottom: 20.h,
       left: 20.w,
       right: 20.w,
-      child: Container(
-        height: 58.h,
-        decoration: BoxDecoration(
-          color: const Color(0xFF121212),
-          borderRadius: BorderRadius.circular(30.r),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Join Premium', 
-              style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14.sp)),
-            SizedBox(width: 12.w),
-            const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 14),
-          ],
-        ),
+      child: Builder(
+        builder: (context) {
+          return InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PricingScreen()),
+              );
+            },
+            child: Container(
+              height: 58.h,
+              decoration: BoxDecoration(
+                color: const Color(0xFF121212),
+                borderRadius: BorderRadius.circular(30.r),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Join Premium', 
+                    style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14.sp)),
+                  SizedBox(width: 12.w),
+                  const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 14),
+                ],
+              ),
+            ),
+          );
+        }
       ),
     );
   }

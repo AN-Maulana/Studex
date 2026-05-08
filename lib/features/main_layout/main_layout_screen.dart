@@ -6,6 +6,7 @@ import '../home/home_screen.dart';
 import '../search/search_screen.dart';
 // --- TAMBAHKAN IMPORT INI ---
 import '../coaching/coaching_screen.dart'; 
+import '../profile/profile_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MainLayoutScreen extends StatefulWidget {
@@ -25,7 +26,7 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
     const SearchScreen(),
     const CoachingScreen(), // Ganti teks Center sebelumnya dengan kelas ini
     const Center(child: Text("Course")),
-    const Center(child: Text("Profile")),
+    const ProfileScreen(),
   ];
 
   @override
