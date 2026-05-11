@@ -1,9 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class CoachingDetailScreen extends StatelessWidget {
+class CoachingDetailScreen extends StatefulWidget {
   const CoachingDetailScreen({super.key});
+
+  @override
+  State<CoachingDetailScreen> createState() => _CoachingDetailScreenState();
+}
+
+class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
+  late YoutubePlayerController _youtubeController;
+
+  @override
+  void initState() {
+    super.initState();
+    _youtubeController = YoutubePlayerController(
+      initialVideoId: 'MLpWrANjFbI',
+      flags: const YoutubePlayerFlags(
+        autoPlay: false,
+        mute: false,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _youtubeController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,95 +139,29 @@ class CoachingDetailScreen extends StatelessWidget {
                     SizedBox(height: 18.h),
 
                     /// VIDEO
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(24.r),
-                          child: Image.network(
-                            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop',
-                            height: 210.h,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(24.r),
+                      child: SizedBox(
+                        height: 210.h,
+                        width: double.infinity,
+                        child: YoutubePlayer(
+                          controller: _youtubeController,
+                          showVideoProgressIndicator: true,
+                          progressIndicatorColor: Colors.red,
+                          progressColors: const ProgressBarColors(
+                            playedColor: Colors.red,
+                            handleColor: Colors.redAccent,
                           ),
+                          bottomActions: [
+                            const SizedBox(width: 14.0),
+                            CurrentPosition(),
+                            const SizedBox(width: 8.0),
+                            ProgressBar(isExpanded: true),
+                            RemainingDuration(),
+                            const PlaybackSpeedButton(),
+                          ],
                         ),
-
-                        /// PLAY BUTTON
-                        Container(
-                          width: 65.w,
-                          height: 65.w,
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.8),
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.pause,
-                            size: 34.sp,
-                            color: Colors.black,
-                          ),
-                        ),
-
-                        /// VIDEO CONTROL
-                        Positioned(
-                          bottom: 12.h,
-                          left: 12.w,
-                          right: 12.w,
-                          child: Column(
-                            children: [
-                              SliderTheme(
-                                data: SliderTheme.of(context).copyWith(
-                                  trackHeight: 3.h,
-                                  thumbShape: RoundSliderThumbShape(
-                                    enabledThumbRadius: 5.r,
-                                  ),
-                                  overlayShape:
-                                      SliderComponentShape.noOverlay,
-                                ),
-                                child: Slider(
-                                  value: 80,
-                                  min: 0,
-                                  max: 100,
-                                  activeColor: Colors.red,
-                                  inactiveColor: Colors.white,
-                                  onChanged: (value) {},
-                                ),
-                              ),
-
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.pause_circle_filled,
-                                        color: Colors.white,
-                                        size: 18.sp,
-                                      ),
-                                      SizedBox(width: 5.w),
-                                      Text(
-                                        '2:39',
-                                        style: GoogleFonts.poppins(
-                                          color: Colors.white,
-                                          fontSize: 10.sp,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  Text(
-                                    '8:46',
-                                    style: GoogleFonts.poppins(
-                                      color: Colors.white,
-                                      fontSize: 10.sp,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
