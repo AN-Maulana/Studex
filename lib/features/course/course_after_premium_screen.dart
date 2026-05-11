@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../core/constants/dummy_data.dart';
-import 'course_detail.dart'; // Pastikan import ini benar
+import 'course_detail.dart'; 
 
 class CourseAfterPremiumScreen extends StatelessWidget {
   const CourseAfterPremiumScreen({super.key});
@@ -26,13 +26,13 @@ class CourseAfterPremiumScreen extends StatelessWidget {
                   SizedBox(height: 20.h),
                   _buildCourseHero(course),
                   SizedBox(height: 16.h),
-                  _buildTopicsList(context), // Kirim context untuk navigasi
+                  _buildTopicsList(context), 
                   SizedBox(height: 16.h),
                   _buildReviews(),
                 ],
               ),
             ),
-            _buildFixedBottomButton(),
+            _buildFixedBottomButton(context),
           ],
         ),
       ),
@@ -147,7 +147,7 @@ class CourseAfterPremiumScreen extends StatelessWidget {
                         style: GoogleFonts.poppins(fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.black)),
                       Row(
                         children: [
-                          const Icon(Icons.star, size: 12, color: const Color(0xFFF1B401)),
+                          const Icon(Icons.star, size: 12, color: Color(0xFFF1B401)),
                           Text(' 4.9 (1.972 Reviews)', 
                             style: GoogleFonts.poppins(fontSize: 10.sp, color: Colors.grey)),
                         ],
@@ -253,13 +253,13 @@ class CourseAfterPremiumScreen extends StatelessWidget {
                         ),
                         alignment: Alignment.center,
                         child: Text(
-                      '0${index + 1}',
-                      style: GoogleFonts.poppins(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        '0${index + 1}',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
                       ),
                       SizedBox(width: 16.w),
                       Expanded(
@@ -352,7 +352,7 @@ class CourseAfterPremiumScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 6.h),
-                  Row(children: List.generate(5, (i) => const Icon(Icons.star, size: 14, color: const Color(0xFFF1B401)))),
+                  Row(children: List.generate(5, (i) => const Icon(Icons.star, size: 14, color: Color(0xFFF1B401)))),
                   SizedBox(height: 8.h),
                   Text(
                     '"The lessons are very clear and focused on CPNS topics. The practice sets really helped me improve my score."',
@@ -367,25 +367,33 @@ class CourseAfterPremiumScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFixedBottomButton() {
+  Widget _buildFixedBottomButton(BuildContext context) {
     return Positioned(
       bottom: 20.h,
       left: 20.w,
       right: 20.w,
-      child: Container(
-        height: 58.h,
-        decoration: BoxDecoration(
-          color: const Color(0xFF121212),
-          borderRadius: BorderRadius.circular(30.r),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Try Now', 
-              style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 14.sp)),
-            SizedBox(width: 12.w),
-            const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 14),
-          ],
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CourseDetailScreen()),
+          );
+        },
+        child: Container(
+          height: 58.h,
+          decoration: BoxDecoration(
+            color: const Color(0xFF121212),
+            borderRadius: BorderRadius.circular(30.r),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Try Now', 
+                style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 14.sp)),
+              SizedBox(width: 12.w),
+              const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 14),
+            ],
+          ),
         ),
       ),
     );
