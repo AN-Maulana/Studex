@@ -31,7 +31,7 @@ class CourseScreen extends StatelessWidget {
                 'Search Your Learning Plan',
                 style: GoogleFonts.poppins(
                   fontSize: 18.sp,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w500,
                   color: AppColors.black,
                 ),
               ),
@@ -173,7 +173,7 @@ class CourseScreen extends StatelessWidget {
                             course['title'],
                             style: GoogleFonts.poppins(
                               fontSize: 18.sp,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w500,
                               color: AppColors.black,
                               height:
                                   1.2, // Mengatur line height agar tidak terlalu renggang
@@ -251,7 +251,7 @@ class CourseScreen extends StatelessWidget {
                                   'Learn Now',
                                   style: GoogleFonts.poppins(
                                     fontSize: 13.sp,
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w500,
                                     color: AppColors.black,
                                   ),
                                 ),

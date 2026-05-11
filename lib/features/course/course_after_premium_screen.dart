@@ -48,7 +48,7 @@ class CourseAfterPremiumScreen extends StatelessWidget {
           'Topics',
           style: GoogleFonts.poppins(
             fontSize: 16.sp,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
             color: Colors.black,
           ),
         ),
@@ -96,9 +96,17 @@ class CourseAfterPremiumScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  _buildTag("Math", const Color(0xFFF9FBE7)),
+                  _buildTag(
+                    "Math",
+                    const Color(0xFFF9FBE7),
+                    textColor: Colors.black,
+                  ),
                   SizedBox(width: 8.w),
-                  _buildTag("Science", const Color(0xFFF9FBE7)),
+                  _buildTag(
+                    "Science",
+                    const Color(0xFFF9FBE7),
+                    textColor: Colors.black,
+                  ),
                 ],
               ),
               _buildTag("Premium", Colors.grey.shade100, icon: Iconsax.lock),
@@ -109,7 +117,7 @@ class CourseAfterPremiumScreen extends StatelessWidget {
             course['title'] ?? 'Marine & Fisheries',
             style: GoogleFonts.poppins(
               fontSize: 18.sp,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
               color: Colors.black,
             ),
           ),
@@ -136,10 +144,10 @@ class CourseAfterPremiumScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(course['instructor'] ?? 'Damar Firdauzi, S.Pi', 
-                        style: GoogleFonts.poppins(fontSize: 12.sp, fontWeight: FontWeight.w600)),
+                        style: GoogleFonts.poppins(fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.black)),
                       Row(
                         children: [
-                          const Icon(Icons.star, size: 12, color: Colors.orange),
+                          const Icon(Icons.star, size: 12, color: const Color(0xFFF1B401)),
                           Text(' 4.9 (1.972 Reviews)', 
                             style: GoogleFonts.poppins(fontSize: 10.sp, color: Colors.grey)),
                         ],
@@ -154,7 +162,28 @@ class CourseAfterPremiumScreen extends StatelessWidget {
                   color: const Color(0xFFF8F8F8),
                   borderRadius: BorderRadius.circular(20.r),
                 ),
-                child: Text('17 topics', style: GoogleFonts.poppins(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '17 ',
+                        style: GoogleFonts.poppins(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'topics',
+                        style: GoogleFonts.poppins(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
@@ -179,7 +208,7 @@ class CourseAfterPremiumScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('All Topics', style: GoogleFonts.poppins(fontSize: 16.sp, fontWeight: FontWeight.bold)),
+                  Text('All Topics', style: GoogleFonts.poppins(fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.black)),
                   Text('Improve your national insight and exam', style: GoogleFonts.poppins(fontSize: 12.sp, color: Colors.grey)),
                 ],
               ),
@@ -223,14 +252,21 @@ class CourseAfterPremiumScreen extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                         alignment: Alignment.center,
-                        child: Text('0${index + 1}', style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
+                        child: Text(
+                      '0${index + 1}',
+                      style: GoogleFonts.poppins(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
                       ),
                       SizedBox(width: 16.w),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('TWK Practice Set', style: GoogleFonts.poppins(fontSize: 14.sp, fontWeight: FontWeight.w600)),
+                            Text('TWK Practice Set', style: GoogleFonts.poppins(fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.black)),
                             Text('Improve your national insight and exam accuracy', 
                               style: GoogleFonts.poppins(fontSize: 11.sp, color: Colors.grey)),
                           ],
@@ -251,8 +287,8 @@ class CourseAfterPremiumScreen extends StatelessWidget {
                 Text(
                   'View All',
                   style: GoogleFonts.poppins(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
                     color: const Color(0xFFC4E839), 
                   ),
                 ),
@@ -282,7 +318,7 @@ class CourseAfterPremiumScreen extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text('Reviews ', style: GoogleFonts.poppins(fontSize: 16.sp, fontWeight: FontWeight.bold)),
+              Text('Reviews ', style: GoogleFonts.poppins(fontSize: 16.sp, fontWeight: FontWeight.w500, color: Colors.black)),
               Text('(192)', style: GoogleFonts.poppins(fontSize: 16.sp, color: Colors.grey)),
             ],
           ),
@@ -304,7 +340,7 @@ class CourseAfterPremiumScreen extends StatelessWidget {
                         children: [
                           CircleAvatar(radius: 14.r, backgroundImage: const NetworkImage('https://i.pravatar.cc/150?img=5')),
                           SizedBox(width: 10.w),
-                          Text('Ethan Caldwell', style: GoogleFonts.poppins(fontSize: 13.sp, fontWeight: FontWeight.w600)),
+                          Text('Ethan Caldwell', style: GoogleFonts.poppins(fontSize: 13.sp, fontWeight: FontWeight.w500, color: Colors.black)),
                         ],
                       ),
                       Row(
@@ -316,7 +352,7 @@ class CourseAfterPremiumScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 6.h),
-                  Row(children: List.generate(5, (i) => const Icon(Icons.star, size: 14, color: Colors.orange))),
+                  Row(children: List.generate(5, (i) => const Icon(Icons.star, size: 14, color: const Color(0xFFF1B401)))),
                   SizedBox(height: 8.h),
                   Text(
                     '"The lessons are very clear and focused on CPNS topics. The practice sets really helped me improve my score."',
@@ -346,7 +382,7 @@ class CourseAfterPremiumScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Try Now', 
-              style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14.sp)),
+              style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 14.sp)),
             SizedBox(width: 12.w),
             const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 14),
           ],
@@ -355,14 +391,29 @@ class CourseAfterPremiumScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTag(String text, Color bg, {IconData? icon}) {
+  Widget _buildTag(
+    String text,
+    Color bg, {
+    IconData? icon,
+    Color? textColor,
+  }) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
       decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(10.r)),
       child: Row(
         children: [
-          if (icon != null) ...[Icon(icon, size: 12.sp), SizedBox(width: 4.w)],
-          Text(text, style: GoogleFonts.poppins(fontSize: 10.sp, fontWeight: FontWeight.w600)),
+          if (icon != null) ...[
+            Icon(icon, size: 12.sp, color: textColor ?? Colors.black),
+            SizedBox(width: 4.w),
+          ],
+          Text(
+            text,
+            style: GoogleFonts.poppins(
+              fontSize: 10.sp,
+              fontWeight: FontWeight.w500,
+              color: textColor ?? Colors.black,
+            ),
+          ),
         ],
       ),
     );

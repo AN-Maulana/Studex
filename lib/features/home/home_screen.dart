@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'Jack Smith Loren',
                   style: GoogleFonts.poppins(
                     fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
                 ),
@@ -118,7 +118,8 @@ class _HomeScreenState extends State<HomeScreen> {
               'Learning In Progress',
               style: GoogleFonts.poppins(
                 fontSize: 16.sp,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w500,
+                 color: Colors.black,
               ),
             ),
             TextButton(
@@ -173,7 +174,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       'TWK Practice Set',
                       style: GoogleFonts.poppins(
                         fontSize: 15.sp,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
+                         color: Colors.black,
                       ),
                     ),
                     Text(
@@ -211,8 +213,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: GoogleFonts.poppins(
-                                        fontSize: 11.sp,
+                                        fontSize: 14.sp,
                                         fontWeight: FontWeight.w500,
+                                         color: Colors.black,
                                       ),
                                     ),
                                     Row(
@@ -220,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         const Icon(
                                           Icons.star,
                                           size: 12,
-                                          color: Colors.orange,
+                                          color: const Color(0xFFF1B401)
                                         ),
                                         Text(
                                           ' 4.9 (1.972 Reviews)',
@@ -266,7 +269,8 @@ class _HomeScreenState extends State<HomeScreen> {
           'Recommended for you',
           style: GoogleFonts.poppins(
             fontSize: 16.sp,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
+             color: Colors.black,
           ),
         ),
         SizedBox(height: 16.h),
@@ -323,8 +327,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       'TWK Practice Set',
                       style: GoogleFonts.poppins(
-                        fontSize: 17.sp,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
                         color: isHovered ? Colors.white : Colors.black,
                       ),
                     ),
@@ -357,7 +361,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Text(
                             'Learn Now',
                             style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w500,
                               fontSize: 12.sp,
                             ),
                           ),

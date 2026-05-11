@@ -56,7 +56,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
           'Topics',
           style: GoogleFonts.poppins(
             fontSize: 16.sp,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
             color: Colors.black,
           ),
         ),
@@ -125,7 +125,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
             course['title'] ?? 'Marine & Fisheries',
             style: GoogleFonts.poppins(
               fontSize: 14.sp,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
               color: Colors.black,
             ),
           ),
@@ -156,7 +156,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
                         course['instructor'] ?? 'Damar Firdauzi, S.Pi',
                         style: GoogleFonts.poppins(
                           fontSize: 14.sp,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w500,
                           color: Colors.black, // Tambahkan baris ini
                         ),
                       ),
@@ -194,7 +194,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           fontSize: 12.sp,
                           fontWeight: FontWeight
-                              .w600, // Lebih tebal agar angka lebih menonjol
+                              .w500, // Lebih tebal agar angka lebih menonjol
                           color: Colors.black, // Angka menjadi Hitam
                         ),
                       ),
@@ -231,7 +231,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
             'All Topics',
             style: GoogleFonts.poppins(
               fontSize: 14.sp,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
               color: Colors.black,
             ),
           ),
@@ -277,7 +277,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
                           'TWK Practice Set',
                           style: GoogleFonts.poppins(
                             fontSize: 14.sp,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             color: Colors.black,
                           ),
                         ),
@@ -317,7 +317,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
                 'Reviews ',
                 style: GoogleFonts.poppins(
                   fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w500,
                   color: Colors.black,
                 ),
               ),
@@ -358,7 +358,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
                             'Ethan Caldwell',
                             style: GoogleFonts.poppins(
                               fontSize: 13.sp,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w500,
                               color: Colors.black,
                             ),
                           ),
@@ -438,7 +438,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
                     'Join Premium',
                     style: GoogleFonts.poppins(
                       color: Colors.white,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                       fontSize: 14.sp,
                     ),
                   ),
@@ -471,7 +471,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
             text,
             style: GoogleFonts.poppins(
               fontSize: 10.sp,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
               color: textColor ?? Colors.black,
             ),
           ),
