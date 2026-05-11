@@ -68,8 +68,8 @@ class _PricingScreenState extends State<PricingScreen> {
         Text(
           'Upgrade to Premium',
           style: GoogleFonts.poppins(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
         ),
@@ -93,7 +93,7 @@ class _PricingScreenState extends State<PricingScreen> {
           'Current Plan',
           style: GoogleFonts.poppins(
             fontSize: 14.sp,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
         ),
@@ -117,7 +117,7 @@ class _PricingScreenState extends State<PricingScreen> {
                         'Free Tier',
                         style: GoogleFonts.poppins(
                           fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           color: Colors.black,
                         ),
                       ),
@@ -134,7 +134,7 @@ class _PricingScreenState extends State<PricingScreen> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color:  const Color(0xFFF5F5F5),
                       border: Border.all(color: Colors.grey.shade300),
                       borderRadius: BorderRadius.circular(20.r),
                     ),
@@ -188,7 +188,7 @@ class _PricingScreenState extends State<PricingScreen> {
           'Recommended Update',
           style: GoogleFonts.poppins(
             fontSize: 14.sp,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
         ),
@@ -222,7 +222,7 @@ class _PricingScreenState extends State<PricingScreen> {
                 'Get full access to all materials and\nexclusive features to boost your score.',
                 style: GoogleFonts.poppins(
                   fontSize: 14.sp,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: Colors.black,
                   height: 1.4,
                 ),
@@ -235,11 +235,12 @@ class _PricingScreenState extends State<PricingScreen> {
                   color: Colors.grey,
                 ),
               ),
+              // ... di dalam _buildRecommendedUpdate ...
               SizedBox(height: 16.h),
               _buildBenefitItem('All premium courses'),
-              SizedBox(height: 10.h),
+              SizedBox(height: 12.h), // Jarak antar item ditambah sedikit
               _buildBenefitItem('Unlimited exams & tryouts'),
-              SizedBox(height: 10.h),
+              SizedBox(height: 12.h),
               _buildBenefitItem('Exclusive live coaching sessions'),
             ],
           ),
@@ -251,20 +252,32 @@ class _PricingScreenState extends State<PricingScreen> {
   Widget _buildBenefitItem(String text) {
     return Row(
       children: [
+        // Lingkaran Icon
         Container(
-          padding: EdgeInsets.all(4.w),
+          width: 32.w, // Ukuran lingkaran diperbesar agar proporsional
+          height: 32.w,
           decoration: BoxDecoration(
-            color: AppColors.primaryLime,
+            color: AppColors.primaryLime, // Warna lime solid
             shape: BoxShape.circle,
           ),
-          child: Icon(Icons.check, size: 12.sp, color: Colors.black),
+          child: Center(
+            child: Icon(
+              Iconsax.note_21, // Menggunakan Iconsax agar konsisten dengan headermu
+              size: 16.sp,
+              color: Colors.black,
+            ),
+          ),
         ),
-        SizedBox(width: 10.w),
-        Text(
-          text,
-          style: GoogleFonts.poppins(
-            fontSize: 12.sp,
-            color: Colors.grey.shade700,
+        SizedBox(width: 12.w),
+        // Label Text
+        Expanded(
+          child: Text(
+            text,
+            style: GoogleFonts.poppins(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w500,
+              color: Colors.black.withOpacity(0.7), // Sedikit pudar agar teks tidak terlalu dominan
+            ),
           ),
         ),
       ],
@@ -279,7 +292,7 @@ class _PricingScreenState extends State<PricingScreen> {
           'Choose Your Premium Plan',
           style: GoogleFonts.poppins(
             fontSize: 14.sp,
-            fontWeight: FontWeight.bold,
+           fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
         ),
@@ -361,7 +374,7 @@ class _PricingScreenState extends State<PricingScreen> {
                     title,
                     style: GoogleFonts.poppins(
                       fontSize: 14.sp,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                       color: isSelected ? Colors.white : Colors.black,
                     ),
                   ),
@@ -383,7 +396,7 @@ class _PricingScreenState extends State<PricingScreen> {
                   price,
                   style: GoogleFonts.poppins(
                     fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     color: isSelected ? Colors.white : Colors.black,
                   ),
                 ),

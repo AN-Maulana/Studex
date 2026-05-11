@@ -5,12 +5,12 @@ import 'package:iconsax/iconsax.dart';
 import '../../core/constants/dummy_data.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/custom_tag.dart';
-import '../course/course_detail_screen.dart';
+import 'course_detail_screen.dart';
 import 'course_before_premium_screen.dart';
 import 'course_after_premium_screen.dart';
 
-class SearchScreen extends StatelessWidget {
-  const SearchScreen({super.key});
+class CourseScreen extends StatelessWidget {
+  const CourseScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,12 @@ class SearchScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h, bottom: 10.h),
+              padding: EdgeInsets.only(
+                left: 20.w,
+                right: 20.w,
+                top: 20.h,
+                bottom: 10.h,
+              ),
               child: Text(
                 'Search Your Learning Plan',
                 style: GoogleFonts.poppins(
@@ -37,14 +42,21 @@ class SearchScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.w,
+                        vertical: 14.h,
+                      ),
                       decoration: BoxDecoration(
                         color: AppColors.white,
                         borderRadius: BorderRadius.circular(20.r),
                       ),
                       child: Row(
                         children: [
-                          Icon(Iconsax.search_normal, color: AppColors.textGrey, size: 20.sp),
+                          Icon(
+                            Iconsax.search_normal,
+                            color: AppColors.textGrey,
+                            size: 20.sp,
+                          ),
                           SizedBox(width: 12.w),
                           Expanded(
                             child: TextField(
@@ -71,7 +83,11 @@ class SearchScreen extends StatelessWidget {
                       color: AppColors.primaryLime,
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(Iconsax.setting_4, color: AppColors.black, size: 20.sp),
+                    child: Icon(
+                      Iconsax.setting_4,
+                      color: AppColors.black,
+                      size: 20.sp,
+                    ),
                   ),
                 ],
               ),
@@ -79,12 +95,18 @@ class SearchScreen extends StatelessWidget {
             SizedBox(height: 24.h),
             Expanded(
               child: ListView.separated(
-                padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 100.h),
+                padding: EdgeInsets.only(
+                  left: 20.w,
+                  right: 20.w,
+                  bottom: 100.h,
+                ),
                 itemCount: DummyData.recommendedCourses.length,
                 separatorBuilder: (context, index) => SizedBox(height: 16.h),
                 itemBuilder: (context, index) {
                   final course = DummyData.recommendedCourses[index];
-                  final isPremium = index != 0; // Assuming index != 0 is premium based on previous dummy logic
+                  final isPremium =
+                      index !=
+                      0; // Assuming index != 0 is premium based on previous dummy logic
                   return GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -125,27 +147,36 @@ class SearchScreen extends StatelessWidget {
                                 text: index == 0 ? 'Free' : 'Premium',
                                 backgroundColor: AppColors.tagPremiumBg,
                                 textColor: AppColors.black,
-                                icon: index == 0 ? Iconsax.unlock : Iconsax.lock,
+                                icon: index == 0
+                                    ? Iconsax.unlock
+                                    : Iconsax.lock,
                               ),
                             ],
                           ),
-                          SizedBox(height: 16.h),
+                          // JARAK ATAS IMAGE (Diperkecil dari 16 ke 12 atau 10)
+                          SizedBox(height: 12.h),
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(16.r),
+                            borderRadius: BorderRadius.circular(
+                              20.r,
+                            ), // Lebih round sesuai Figma
                             child: Image.asset(
                               course['image'],
-                              height: 140.h,
+                              height: 130
+                                  .h, // Tinggi sedikit dikurangi agar proporsional
                               width: double.infinity,
                               fit: BoxFit.cover,
                             ),
                           ),
-                          SizedBox(height: 16.h),
+                          // JARAK BAWAH IMAGE (Diperkecil agar teks menempel proporsional)
+                          SizedBox(height: 12.h),
                           Text(
                             course['title'],
                             style: GoogleFonts.poppins(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w600,
                               color: AppColors.black,
+                              height:
+                                  1.2, // Mengatur line height agar tidak terlalu renggang
                             ),
                           ),
                           SizedBox(height: 4.h),
@@ -156,38 +187,47 @@ class SearchScreen extends StatelessWidget {
                               color: AppColors.textGrey,
                             ),
                           ),
-                          SizedBox(height: 16.h),
+                          // JARAK MENUJU BOTTOM ROW
+                          SizedBox(height: 12.h),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              // Avatar Stack
                               SizedBox(
-                                width: 80.w,
+                                width: 70
+                                    .w, // Dipersempit agar tidak memakan tempat
                                 height: 32.h,
                                 child: Stack(
                                   children: [
                                     Positioned(
                                       left: 0,
                                       child: CircleAvatar(
-                                        radius: 16.r,
-                                        backgroundImage: NetworkImage(course['studentAvatars'][0]),
+                                        radius: 14.r,
+                                        backgroundImage: NetworkImage(
+                                          course['studentAvatars'][0],
+                                        ),
                                       ),
                                     ),
                                     Positioned(
-                                      left: 24.w,
+                                      left: 18
+                                          .w, // Jarak tumpukan (overlap) diperkecil
                                       child: CircleAvatar(
-                                        radius: 16.r,
-                                        backgroundImage: NetworkImage(course['studentAvatars'][1]),
+                                        radius: 14.r,
+                                        backgroundImage: NetworkImage(
+                                          course['studentAvatars'][1],
+                                        ),
                                       ),
                                     ),
                                     Positioned(
-                                      left: 48.w,
+                                      left: 36.w,
                                       child: CircleAvatar(
-                                        radius: 16.r,
-                                        backgroundColor: AppColors.iconBackground,
+                                        radius: 14.r,
+                                        backgroundColor:
+                                            AppColors.iconBackground,
                                         child: Text(
                                           course['students'],
                                           style: GoogleFonts.poppins(
-                                            fontSize: 10.sp,
+                                            fontSize: 9.sp,
                                             color: AppColors.black,
                                             fontWeight: FontWeight.w600,
                                           ),
@@ -197,17 +237,21 @@ class SearchScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
+                              // Button Learn Now
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 24.w,
+                                  vertical: 12.h,
+                                ),
                                 decoration: BoxDecoration(
                                   color: AppColors.primaryLime,
-                                  borderRadius: BorderRadius.circular(20.r),
+                                  borderRadius: BorderRadius.circular(25.r),
                                 ),
                                 child: Text(
                                   'Learn Now',
                                   style: GoogleFonts.poppins(
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w600,
+                                    fontSize: 13.sp,
+                                    fontWeight: FontWeight.w700,
                                     color: AppColors.black,
                                   ),
                                 ),

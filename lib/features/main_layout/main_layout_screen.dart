@@ -4,7 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/app_colors.dart';
 import '../home/home_screen.dart';
-import '../search/search_screen.dart';
+import '../course/course_screen.dart';
 import '../coaching/coaching_screen.dart'; 
 import '../profile/profile_screen.dart';
 
@@ -21,9 +21,8 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const SearchScreen(),
+    const CourseScreen(),
     const CoachingScreen(),
-    const Center(child: Text("Course")),
     const ProfileScreen(),
   ];
 
@@ -90,10 +89,10 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
               letterSpacing: -0.32,
             ),
             items: [
+
               _buildNavItem(Iconsax.home, Iconsax.home5, 'Home'),
-              _buildNavItem(Iconsax.search_normal, Iconsax.search_normal_1, 'Search'),
-              _buildNavItem(Iconsax.video_play, Iconsax.video_play5, 'Coaching'),
               _buildNavItem(Iconsax.book, Iconsax.book_15, 'Course'),
+              _buildNavItem(Iconsax.video_play, Iconsax.video_play5, 'Coaching'),
               _buildNavItem(Iconsax.user, Iconsax.user_square5, 'Profile'),
             ],
           ),
