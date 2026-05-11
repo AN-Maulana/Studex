@@ -86,7 +86,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             'Checkout',
             style: GoogleFonts.poppins(
               fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             ),
           ),
@@ -113,7 +113,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 planTitle,
                 style: GoogleFonts.poppins(
                   fontSize: 14.sp,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),
               ),
@@ -150,7 +150,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 '\$7.99',
                 style: GoogleFonts.poppins(
                   fontSize: 24.sp,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),
               ),
@@ -195,7 +195,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           'Promo Code',
           style: GoogleFonts.poppins(
             fontSize: 14.sp,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
         ),
@@ -265,7 +265,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             'Payment Method',
             style: GoogleFonts.poppins(
               fontSize: 14.sp,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             ),
           ),
@@ -337,17 +337,18 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             title,
             style: GoogleFonts.poppins(
               fontSize: 14.sp,
+              fontWeight: FontWeight.w600,
               color: Colors.black87,
             ),
           ),
           Spacer(),
           if (iconUrl == 'paypal')
-            Text('PayPal', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
+            Text('PayPal', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600, fontStyle: FontStyle.italic)),
           if (iconUrl == 'gpay')
             Row(
               children: [
-                Text('G', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 16.sp)),
-                Text('Pay', style: TextStyle(color: Colors.grey.shade700, fontWeight: FontWeight.bold, fontSize: 16.sp)),
+                Text('G', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600, fontSize: 16.sp)),
+                Text('Pay', style: TextStyle(color: Colors.grey.shade700, fontWeight: FontWeight.w600, fontSize: 16.sp)),
               ],
             ),
         ],
@@ -363,7 +364,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           label,
           style: GoogleFonts.poppins(
             fontSize: 12.sp,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
             color: Colors.black87,
           ),
         ),
@@ -449,7 +450,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 price,
                 style: GoogleFonts.poppins(
                   fontSize: 20.sp,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: Colors.black,
                 ),
               ),

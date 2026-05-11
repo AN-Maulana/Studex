@@ -22,7 +22,6 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const SearchScreen(),
-
     const CoachingScreen(),
     const Center(child: Text("Course")),
     const ProfileScreen(),
