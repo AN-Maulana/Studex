@@ -26,8 +26,8 @@ class ChangePasswordScreen extends StatelessWidget {
                     Text(
                       'Reset Your Password',
                       style: GoogleFonts.poppins(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
                         color: Colors.black,
                       ),
                     ),
@@ -76,7 +76,7 @@ class ChangePasswordScreen extends StatelessWidget {
             'Change Password',
             style: GoogleFonts.poppins(
               fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
+             fontWeight: FontWeight.w500,
               color: Colors.black,
             ),
           ),
@@ -94,7 +94,7 @@ class ChangePasswordScreen extends StatelessWidget {
           label,
           style: GoogleFonts.poppins(
             fontSize: 12.sp,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w500,
             color: Colors.black87,
           ),
         ),
@@ -150,7 +150,7 @@ class ChangePasswordScreen extends StatelessWidget {
             'Send Verification Code',
             style: GoogleFonts.poppins(
               fontSize: 14.sp,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
               color: Colors.black,
             ),
           ),

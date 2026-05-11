@@ -66,7 +66,7 @@ class EditProfileScreen extends StatelessWidget {
             'Edit Profile',
             style: GoogleFonts.poppins(
               fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
               color: Colors.black,
             ),
           ),
@@ -109,8 +109,8 @@ class EditProfileScreen extends StatelessWidget {
         Text(
           label,
           style: GoogleFonts.poppins(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.bold,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w500,
             color: Colors.black87,
           ),
         ),
@@ -127,7 +127,7 @@ class EditProfileScreen extends StatelessWidget {
             ),
           ),
           style: GoogleFonts.poppins(
-            fontSize: 12.sp,
+            fontSize: 14.sp,
             color: Colors.black87,
           ),
         ),
@@ -142,8 +142,8 @@ class EditProfileScreen extends StatelessWidget {
         Text(
           'Password',
           style: GoogleFonts.poppins(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.bold,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w500,
             color: Colors.black87,
           ),
         ),
@@ -164,7 +164,7 @@ class EditProfileScreen extends StatelessWidget {
                   ),
                 ),
                 style: GoogleFonts.poppins(
-                  fontSize: 12.sp,
+                  fontSize: 14.sp,
                   color: Colors.black87,
                   letterSpacing: 2,
                 ),
@@ -187,8 +187,8 @@ class EditProfileScreen extends StatelessWidget {
                 child: Text(
                   'Change',
                   style: GoogleFonts.poppins(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
                 ),
@@ -224,7 +224,7 @@ class EditProfileScreen extends StatelessWidget {
             'Save',
             style: GoogleFonts.poppins(
               fontSize: 14.sp,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
               color: Colors.black,
             ),
           ),
