@@ -5,15 +5,192 @@ import 'package:iconsax/iconsax.dart';
 import '../../core/constants/dummy_data.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/custom_tag.dart';
-import 'course_detail_screen.dart';
-import 'course_before_premium_screen.dart';
 import 'course_after_premium_screen.dart';
+import 'course_before_premium_screen.dart';
+import 'course_detail_screen.dart';
 
-class CourseScreen extends StatelessWidget {
+enum CourseAccessFilter {
+  all,
+  free,
+  premium,
+}
+
+class CourseScreen extends StatefulWidget {
   const CourseScreen({super.key});
 
   @override
+  State<CourseScreen> createState() => _CourseScreenState();
+}
+
+class _CourseScreenState extends State<CourseScreen> {
+  final TextEditingController _searchController = TextEditingController();
+  CourseAccessFilter _filter = CourseAccessFilter.all;
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_onSearchChanged);
+  }
+
+  void _onSearchChanged() {
+    // Only rebuild; no heavy work.
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _searchController.removeListener(_onSearchChanged);
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  bool _isPremiumByIndex(int index) {
+    // Logic yang dipakai di code lama: index != 0 => premium
+    return index != 0;
+  }
+
+  bool _matchesFilter(int index) {
+    final isPremium = _isPremiumByIndex(index);
+    switch (_filter) {
+      case CourseAccessFilter.all:
+        return true;
+      case CourseAccessFilter.free:
+        return !isPremium;
+      case CourseAccessFilter.premium:
+        return isPremium;
+    }
+  }
+
+  bool _matchesSearch(Map<String, dynamic> course) {
+    final q = _searchController.text.trim().toLowerCase();
+    if (q.isEmpty) return true;
+
+    final title = (course['title'] ?? '').toString().toLowerCase();
+    final subtitle = (course['subtitle'] ?? '').toString().toLowerCase();
+    return title.contains(q) || subtitle.contains(q);
+  }
+
+  List<Map<String, dynamic>> _getFilteredCourses() {
+    final all = DummyData.recommendedCourses;
+    final results = <Map<String, dynamic>>[];
+
+    for (var i = 0; i < all.length; i++) {
+      final course = all[i];
+      if (!_matchesFilter(i)) continue;
+      if (!_matchesSearch(course)) continue;
+      results.add(course);
+    }
+
+    return results;
+  }
+
+  Future<void> _openFilterSheet() async {
+    await showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      builder: (context) {
+        Widget option({
+          required String title,
+          required String subtitle,
+          required CourseAccessFilter value,
+        }) {
+          final selected = _filter == value;
+          return InkWell(
+            borderRadius: BorderRadius.circular(16.r),
+            onTap: () {
+              setState(() => _filter = value);
+              Navigator.pop(context);
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: 8.h),
+              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
+              decoration: BoxDecoration(
+                color: selected ? AppColors.primaryLime : AppColors.white,
+                borderRadius: BorderRadius.circular(16.r),
+                  border: Border.all(
+                    color: selected ? AppColors.primaryLime : AppColors.textGrey,
+                    width: 1.2,
+                  ),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    selected ? Iconsax.tick_circle : Iconsax.info_circle,
+                    size: 20.sp,
+                    color: selected ? AppColors.black : AppColors.textGrey,
+                  ),
+                  SizedBox(width: 10.w),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: GoogleFonts.poppins(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.black,
+                          ),
+                        ),
+                        Text(
+                          subtitle,
+                          style: GoogleFonts.poppins(
+                            fontSize: 12.sp,
+                            color: selected ? AppColors.black : AppColors.textGrey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+
+        return SafeArea(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.w, 10.h, 20.w, 20.h),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Filter',
+                  style: GoogleFonts.poppins(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.black,
+                  ),
+                ),
+                SizedBox(height: 8.h),
+                option(
+                  title: 'All',
+                  subtitle: 'Semua course',
+                  value: CourseAccessFilter.all,
+                ),
+                option(
+                  title: 'Free',
+                  subtitle: 'Hanya course free',
+                  value: CourseAccessFilter.free,
+                ),
+                option(
+                  title: 'Premium',
+                  subtitle: 'Hanya course premium',
+                  value: CourseAccessFilter.premium,
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final filteredCourses = _getFilteredCourses();
+
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -60,6 +237,7 @@ class CourseScreen extends StatelessWidget {
                           SizedBox(width: 12.w),
                           Expanded(
                             child: TextField(
+                              controller: _searchController,
                               decoration: InputDecoration(
                                 hintText: 'Search your daily task',
                                 hintStyle: GoogleFonts.poppins(
@@ -77,16 +255,19 @@ class CourseScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 12.w),
-                  Container(
-                    padding: EdgeInsets.all(14.w),
-                    decoration: const BoxDecoration(
-                      color: AppColors.primaryLime,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      Iconsax.setting_4,
-                      color: AppColors.black,
-                      size: 20.sp,
+                  GestureDetector(
+                    onTap: _openFilterSheet,
+                    child: Container(
+                      padding: EdgeInsets.all(14.w),
+                      decoration: const BoxDecoration(
+                        color: AppColors.primaryLime,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Iconsax.setting_4,
+                        color: AppColors.black,
+                        size: 20.sp,
+                      ),
                     ),
                   ),
                 ],
@@ -94,176 +275,180 @@ class CourseScreen extends StatelessWidget {
             ),
             SizedBox(height: 24.h),
             Expanded(
-              child: ListView.separated(
-                padding: EdgeInsets.only(
-                  left: 20.w,
-                  right: 20.w,
-                  bottom: 100.h,
-                ),
-                itemCount: DummyData.recommendedCourses.length,
-                separatorBuilder: (context, index) => SizedBox(height: 16.h),
-                itemBuilder: (context, index) {
-                  final course = DummyData.recommendedCourses[index];
-                  final isPremium =
-                      index !=
-                      0; // Assuming index != 0 is premium based on previous dummy logic
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => isPremium
-                              ? const CourseAfterPremiumScreen()
-                              : const CourseBeforePremiumScreen(),
+              child: filteredCourses.isEmpty
+                  ? Center(
+                      child: Text(
+                        'No courses found',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textGrey,
                         ),
-                      );
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(16.w),
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(24.r),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  CustomTag(
-                                    text: 'Math',
-                                    backgroundColor: AppColors.tagMathBg,
-                                  ),
-                                  SizedBox(width: 8.w),
-                                  CustomTag(
-                                    text: 'Science',
-                                    backgroundColor: AppColors.tagScienceBg,
-                                  ),
-                                ],
+                    )
+                  : ListView.separated(
+                      padding: EdgeInsets.only(
+                        left: 20.w,
+                        right: 20.w,
+                        bottom: 100.h,
+                      ),
+                      itemCount: filteredCourses.length,
+                      separatorBuilder: (context, index) => SizedBox(height: 16.h),
+                      itemBuilder: (context, index) {
+                        // Karena daftar sudah difilter, index di sini tidak sama dengan index asli.
+                        // Jadi kita tentukan premium/free berdasarkan key dari data dummy.
+                        // Kita pakai fallback: cari course di list dummy untuk mendapatkan index asli.
+                        final course = filteredCourses[index];
+                        final originalIndex = DummyData.recommendedCourses.indexWhere(
+                          (e) => e['title'] == course['title'] && e['subtitle'] == course['subtitle'],
+                        );
+                        final isPremium = originalIndex == -1
+                            ? false
+                            : _isPremiumByIndex(originalIndex);
+
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => isPremium
+                                    ? const CourseAfterPremiumScreen()
+                                    : const CourseBeforePremiumScreen(),
                               ),
-                              CustomTag(
-                                text: index == 0 ? 'Free' : 'Premium',
-                                backgroundColor: AppColors.tagPremiumBg,
-                                textColor: AppColors.black,
-                                icon: index == 0
-                                    ? Iconsax.unlock
-                                    : Iconsax.lock,
-                              ),
-                            ],
-                          ),
-                          // JARAK ATAS IMAGE (Diperkecil dari 16 ke 12 atau 10)
-                          SizedBox(height: 12.h),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(
-                              20.r,
-                            ), // Lebih round sesuai Figma
-                            child: Image.asset(
-                              course['image'],
-                              height: 130
-                                  .h, // Tinggi sedikit dikurangi agar proporsional
-                              width: double.infinity,
-                              fit: BoxFit.cover,
+                            );
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(16.w),
+                            decoration: BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.circular(24.r),
                             ),
-                          ),
-                          // JARAK BAWAH IMAGE (Diperkecil agar teks menempel proporsional)
-                          SizedBox(height: 12.h),
-                          Text(
-                            course['title'],
-                            style: GoogleFonts.poppins(
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.black,
-                              height:
-                                  1.2, // Mengatur line height agar tidak terlalu renggang
-                            ),
-                          ),
-                          SizedBox(height: 4.h),
-                          Text(
-                            course['subtitle'],
-                            style: GoogleFonts.poppins(
-                              fontSize: 12.sp,
-                              color: AppColors.textGrey,
-                            ),
-                          ),
-                          // JARAK MENUJU BOTTOM ROW
-                          SizedBox(height: 12.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // Avatar Stack
-                              SizedBox(
-                                width: 70
-                                    .w, // Dipersempit agar tidak memakan tempat
-                                height: 32.h,
-                                child: Stack(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Positioned(
-                                      left: 0,
-                                      child: CircleAvatar(
-                                        radius: 14.r,
-                                        backgroundImage: NetworkImage(
-                                          course['studentAvatars'][0],
+                                    Row(
+                                      children: [
+                                        CustomTag(
+                                          text: 'Math',
+                                          backgroundColor: AppColors.tagMathBg,
                                         ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 18
-                                          .w, // Jarak tumpukan (overlap) diperkecil
-                                      child: CircleAvatar(
-                                        radius: 14.r,
-                                        backgroundImage: NetworkImage(
-                                          course['studentAvatars'][1],
+                                        SizedBox(width: 8.w),
+                                        CustomTag(
+                                          text: 'Science',
+                                          backgroundColor: AppColors.tagScienceBg,
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                    Positioned(
-                                      left: 36.w,
-                                      child: CircleAvatar(
-                                        radius: 14.r,
-                                        backgroundColor:
-                                            AppColors.iconBackground,
-                                        child: Text(
-                                          course['students'],
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 9.sp,
-                                            color: AppColors.black,
-                                            fontWeight: FontWeight.w600,
+                                    CustomTag(
+                                      text: isPremium ? 'Premium' : 'Free',
+                                      backgroundColor: AppColors.tagPremiumBg,
+                                      textColor: AppColors.black,
+                                      icon: isPremium ? Iconsax.lock : Iconsax.unlock,
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 12.h),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20.r),
+                                  child: Image.asset(
+                                    course['image'],
+                                    height: 130.h,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                SizedBox(height: 12.h),
+                                Text(
+                                  course['title'],
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.black,
+                                    height: 1.2,
+                                  ),
+                                ),
+                                SizedBox(height: 4.h),
+                                Text(
+                                  course['subtitle'],
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 12.sp,
+                                    color: AppColors.textGrey,
+                                  ),
+                                ),
+                                SizedBox(height: 12.h),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: 70.w,
+                                      height: 32.h,
+                                      child: Stack(
+                                        children: [
+                                          Positioned(
+                                            left: 0,
+                                            child: CircleAvatar(
+                                              radius: 14.r,
+                                              backgroundImage: NetworkImage(
+                                                course['studentAvatars'][0],
+                                              ),
+                                            ),
                                           ),
+                                          Positioned(
+                                            left: 18.w,
+                                            child: CircleAvatar(
+                                              radius: 14.r,
+                                              backgroundImage: NetworkImage(
+                                                course['studentAvatars'][1],
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned(
+                                            left: 36.w,
+                                            child: CircleAvatar(
+                                              radius: 14.r,
+                                              backgroundColor: AppColors.iconBackground,
+                                              child: Text(
+                                                course['students'],
+                                                style: GoogleFonts.poppins(
+                                                  fontSize: 9.sp,
+                                                  color: AppColors.black,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 24.w,
+                                        vertical: 12.h,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: AppColors.primaryLime,
+                                        borderRadius: BorderRadius.circular(25.r),
+                                      ),
+                                      child: Text(
+                                        'Learn Now',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 13.sp,
+                                          fontWeight: FontWeight.w500,
+                                          color: AppColors.black,
                                         ),
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
-                              // Button Learn Now
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 24.w,
-                                  vertical: 12.h,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: AppColors.primaryLime,
-                                  borderRadius: BorderRadius.circular(25.r),
-                                ),
-                                child: Text(
-                                  'Learn Now',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.black,
-                                  ),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
             ),
           ],
         ),
