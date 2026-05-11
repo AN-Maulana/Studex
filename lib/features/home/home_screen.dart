@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'Jack Smith Loren',
                   style: GoogleFonts.poppins(
                     fontSize: 14.sp,
-                    fontWeight: FontWeight.w600, // SemiBold untuk Nama Utama
+                    fontWeight: FontWeight.w600,
                     color: Colors.black,
                   ),
                 ),
@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: GoogleFonts.poppins(
                           fontSize: 11.sp,
                           color: Colors.grey,
-                          fontWeight: FontWeight.w500, // Medium
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
@@ -136,8 +136,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         SizedBox(height: 10.h),
         SizedBox(
-          height: 260
-              .h, // Tinggi diperbesar lebih lanjut agar konten bawah tidak tertutup
+          // Tinggi disesuaikan agar pas dengan isi konten (tidak terlalu tinggi)
+          height: 195.h, 
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: 2,
@@ -152,6 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min, // Mengambil ruang minimum
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -174,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontSize: 15.sp,
                         fontWeight: FontWeight.w600,
                       ),
-                    ), // SemiBold
+                    ),
                     Text(
                       'Improve your national insight and exam accuracy',
                       maxLines: 2,
@@ -184,9 +185,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.grey,
                         fontWeight: FontWeight.w400,
                         height: 1.4,
-                      ), // Regular
+                      ),
                     ),
-                    const Spacer(),
+                    // Hapus Spacer() dan ganti dengan SizedBox tetap
+                    SizedBox(height: 16.h), 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -212,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         fontSize: 11.sp,
                                         fontWeight: FontWeight.w500,
                                       ),
-                                    ), // Medium
+                                    ),
                                     Row(
                                       children: [
                                         const Icon(
@@ -227,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             color: Colors.grey,
                                             fontWeight: FontWeight.w400,
                                           ),
-                                        ), // Regular
+                                        ),
                                       ],
                                     ),
                                   ],
@@ -294,17 +296,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Row(
                           children: [
-                            _buildBadge(
-                              "Math",
-                              const Color(0xFFF2F9CC),
-                              Colors.black,
-                            ),
+                            _buildBadge("Math", const Color(0xFFF2F9CC), Colors.black),
                             SizedBox(width: 8.w),
-                            _buildBadge(
-                              "Science",
-                              const Color(0xFFF2F9CC),
-                              Colors.black,
-                            ),
+                            _buildBadge("Science", const Color(0xFFF2F9CC), Colors.black),
                           ],
                         ),
                         _buildBadge(
@@ -330,7 +324,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       'TWK Practice Set',
                       style: GoogleFonts.poppins(
                         fontSize: 17.sp,
-                        fontWeight: FontWeight.w600, // SemiBold
+                        fontWeight: FontWeight.w600,
                         color: isHovered ? Colors.white : Colors.black,
                       ),
                     ),
@@ -339,7 +333,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: GoogleFonts.poppins(
                         fontSize: 12.sp,
                         color: isHovered ? Colors.white70 : Colors.grey,
-                        fontWeight: FontWeight.w400, // Regular (Deskripsi)
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                     SizedBox(height: 16.h),
@@ -349,13 +343,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         _buildOverlapUsers(isHovered),
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const CourseDetailScreen(),
-                              ),
-                            );
+                            // Navigasi ke CourseDetailScreen
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFFD4F05B),
@@ -364,10 +352,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.r),
                             ),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 20.w,
-                              vertical: 10.h,
-                            ),
+                            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
                           ),
                           child: Text(
                             'Learn Now',
@@ -450,18 +435,14 @@ class _HomeScreenState extends State<HomeScreen> {
             left: 0,
             child: CircleAvatar(
               radius: 16.r,
-              backgroundImage: const NetworkImage(
-                'https://i.pravatar.cc/150?img=1',
-              ),
+              backgroundImage: const NetworkImage('https://i.pravatar.cc/150?img=1'),
             ),
           ),
           Positioned(
             left: 20.w,
             child: CircleAvatar(
               radius: 16.r,
-              backgroundImage: const NetworkImage(
-                'https://i.pravatar.cc/150?img=2',
-              ),
+              backgroundImage: const NetworkImage('https://i.pravatar.cc/150?img=2'),
             ),
           ),
           Positioned(
