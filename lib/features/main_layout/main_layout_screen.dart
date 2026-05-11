@@ -93,11 +93,11 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
               ),
               const BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 4),
+                  padding: EdgeInsets.only(bottom: 4, right: 6),
                   child: Icon(Iconsax.book),
                 ),
                 activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 4),
+                  padding: EdgeInsets.only(bottom: 4, right: 6),
                   child: Icon(Iconsax.book_15),
                 ),
                 label: 'Course',
