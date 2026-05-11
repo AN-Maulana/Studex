@@ -5,12 +5,12 @@ import 'package:iconsax/iconsax.dart';
 import '../../core/constants/dummy_data.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/custom_tag.dart';
-import '../course/course_detail_screen.dart';
+import 'course_detail_screen.dart';
 import 'course_before_premium_screen.dart';
 import 'course_after_premium_screen.dart';
 
-class SearchScreen extends StatelessWidget {
-  const SearchScreen({super.key});
+class CourseScreen extends StatelessWidget {
+  const CourseScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
