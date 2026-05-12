@@ -141,9 +141,8 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                     /// VIDEO
                     ClipRRect(
                       borderRadius: BorderRadius.circular(24.r),
-                      child: SizedBox(
-                        height: 210.h,
-                        width: double.infinity,
+                      child: AspectRatio(
+                        aspectRatio: 16 / 9,
                         child: YoutubePlayer(
                           controller: _youtubeController,
                           showVideoProgressIndicator: true,
