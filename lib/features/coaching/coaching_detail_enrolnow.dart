@@ -66,7 +66,7 @@ class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
                                 Text(
                                   'Damar Firdauzi, S.Pi',
                                   style: GoogleFonts.poppins(
-                                    fontSize: 14.sp,
+                                    fontSize: 15.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -280,7 +280,7 @@ class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
               SizedBox(height: 15.h),
               Text(
                 'Enroll successfully!',
-                style: GoogleFonts.poppins(color: Colors.white, fontSize: 14.sp),
+                style: GoogleFonts.poppins(color: Colors.white, fontSize: 15.sp),
               ),
             ],
           ),

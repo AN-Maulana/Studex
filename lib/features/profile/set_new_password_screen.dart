@@ -58,7 +58,7 @@ class SetNewPasswordScreen extends StatelessWidget {
           Text(
             'Change Password',
             style: GoogleFonts.poppins(
-              fontSize: 14.sp,
+              fontSize: 15.sp,
               fontWeight: FontWeight.w500,
               color: Colors.black,
             ),
@@ -76,7 +76,7 @@ class SetNewPasswordScreen extends StatelessWidget {
         Text(
           label,
           style: GoogleFonts.poppins(
-            fontSize: 14.sp,
+            fontSize: 15.sp,
            fontWeight: FontWeight.w500,
             color: Colors.black87,
           ),
@@ -139,7 +139,7 @@ class SetNewPasswordScreen extends StatelessWidget {
           child: Text(
             'Save Password',
             style: GoogleFonts.poppins(
-              fontSize: 14.sp,
+              fontSize: 15.sp,
               fontWeight: FontWeight.w500,
               color: Colors.black,
             ),

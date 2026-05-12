@@ -129,7 +129,7 @@ class _ExamResultScreenState extends State<ExamResultScreen> {
                           'Great job! You have successfully passed\nthe exam.',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.poppins(
-                            fontSize: 14.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w400,
                             color: Colors.black45,
                             height: 1.5,
@@ -236,7 +236,7 @@ class _ExamResultScreenState extends State<ExamResultScreen> {
             Text(
               label,
               style: GoogleFonts.poppins(
-                fontSize: 14.sp,
+                fontSize: 15.sp,
                 color: Colors.black45,
                 fontWeight: FontWeight.w400,
               ),

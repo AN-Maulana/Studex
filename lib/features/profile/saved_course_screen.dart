@@ -154,7 +154,7 @@ class SavedCourseScreen extends StatelessWidget {
           Text(
             title,
             style: GoogleFonts.poppins(
-              fontSize: 14.sp,
+              fontSize: 15.sp,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),

@@ -30,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
               Text(
                 'Privacy & Settings',
                 style: GoogleFonts.poppins(
-                  fontSize: 14.sp,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w500,
                   color: Colors.black87,
                 ),
@@ -258,7 +258,7 @@ class ProfileScreen extends StatelessWidget {
                   'Are you sure you want to log out from your account?',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
-                    fontSize: 14.sp,
+                    fontSize: 15.sp,
                     color: Colors.grey.shade600,
                   ),
                 ),
@@ -278,7 +278,7 @@ class ProfileScreen extends StatelessWidget {
                         child: Text(
                           'Cancel',
                           style: GoogleFonts.poppins(
-                            fontSize: 14.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w600,
                             color: Colors.black87,
                           ),
@@ -308,7 +308,7 @@ class ProfileScreen extends StatelessWidget {
                         child: Text(
                           'Yes, Log Out',
                           style: GoogleFonts.poppins(
-                            fontSize: 14.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -354,7 +354,7 @@ class ProfileScreen extends StatelessWidget {
               child: Text(
                 title,
                 style: GoogleFonts.poppins(
-                  fontSize: 14.sp,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w500,
                   color: isDestructive ? Colors.red : Colors.black87,
                 ),

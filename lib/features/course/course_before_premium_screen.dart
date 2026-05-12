@@ -149,7 +149,7 @@ class _CourseBeforePremiumScreenState extends State<CourseBeforePremiumScreen> {
           Text(
             course['title'] ?? 'Marine & Fisheries',
             style: GoogleFonts.poppins(
-              fontSize: 14.sp,
+              fontSize: 15.sp,
               fontWeight: FontWeight.w500,
               color: Colors.black,
             ),
@@ -180,7 +180,7 @@ class _CourseBeforePremiumScreenState extends State<CourseBeforePremiumScreen> {
                       Text(
                         course['instructor'] ?? 'Damar Firdauzi, S.Pi',
                         style: GoogleFonts.poppins(
-                          fontSize: 14.sp,
+                          fontSize: 15.sp,
                           fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
@@ -254,7 +254,7 @@ class _CourseBeforePremiumScreenState extends State<CourseBeforePremiumScreen> {
           Text(
             'All Topics',
             style: GoogleFonts.poppins(
-              fontSize: 14.sp,
+              fontSize: 15.sp,
               fontWeight: FontWeight.w500,
               color: Colors.black,
             ),
@@ -284,7 +284,7 @@ class _CourseBeforePremiumScreenState extends State<CourseBeforePremiumScreen> {
                     child: Text(
                       '0${index + 1}',
                       style: GoogleFonts.poppins(
-                        fontSize: 14.sp,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
@@ -298,7 +298,7 @@ class _CourseBeforePremiumScreenState extends State<CourseBeforePremiumScreen> {
                         Text(
                           'TWK Practice Set',
                           style: GoogleFonts.poppins(
-                            fontSize: 14.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
                           ),
@@ -338,7 +338,7 @@ class _CourseBeforePremiumScreenState extends State<CourseBeforePremiumScreen> {
               Text(
                 'Reviews ',
                 style: GoogleFonts.poppins(
-                  fontSize: 14.sp,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w500,
                   color: Colors.black,
                 ),
@@ -461,7 +461,7 @@ class _CourseBeforePremiumScreenState extends State<CourseBeforePremiumScreen> {
                     style: GoogleFonts.poppins(
                       color: Colors.white,
                       fontWeight: FontWeight.w500,
-                      fontSize: 14.sp,
+                      fontSize: 15.sp,
                     ),
                   ),
                   SizedBox(width: 12.w),

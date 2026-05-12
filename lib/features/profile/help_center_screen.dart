@@ -93,7 +93,7 @@ class HelpCenterScreen extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           hintText: 'How can we help you?',
-          hintStyle: GoogleFonts.poppins(color: Colors.grey, fontSize: 14.sp),
+          hintStyle: GoogleFonts.poppins(color: Colors.grey, fontSize: 15.sp),
           prefixIcon: Icon(Iconsax.search_normal, color: Colors.grey, size: 20.sp),
           border: InputBorder.none,
           contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
@@ -137,7 +137,7 @@ class HelpCenterScreen extends StatelessWidget {
             title: Text(
               faqs[index]['question']!,
               style: GoogleFonts.poppins(
-                fontSize: 14.sp,
+                fontSize: 15.sp,
                 fontWeight: FontWeight.w500,
                 color: Colors.black87,
               ),
@@ -224,7 +224,7 @@ class HelpCenterScreen extends StatelessWidget {
               child: Text(
                 'Contact Support',
                 style: GoogleFonts.poppins(
-                  fontSize: 14.sp,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),

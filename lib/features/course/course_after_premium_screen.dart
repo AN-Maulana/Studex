@@ -169,7 +169,7 @@ class _CourseAfterPremiumScreenState extends State<CourseAfterPremiumScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(course['instructor'] ?? 'Damar Firdauzi, S.Pi', 
-                        style: GoogleFonts.poppins(fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.black)),
+                        style: GoogleFonts.poppins(fontSize: 15.sp, fontWeight: FontWeight.w500, color: Colors.black)),
                       Row(
                         children: [
                           const Icon(Icons.star, size: 12, color: Color(0xFFF1B401)),
@@ -233,7 +233,7 @@ class _CourseAfterPremiumScreenState extends State<CourseAfterPremiumScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('All Topics', style: GoogleFonts.poppins(fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.black)),
+                  Text('All Topics', style: GoogleFonts.poppins(fontSize: 15.sp, fontWeight: FontWeight.w500, color: Colors.black)),
                   Text('Improve your national insight and exam', style: GoogleFonts.poppins(fontSize: 12.sp, color: Colors.grey)),
                 ],
               ),
@@ -280,7 +280,7 @@ class _CourseAfterPremiumScreenState extends State<CourseAfterPremiumScreen> {
                         child: Text(
                         '0${index + 1}',
                         style: GoogleFonts.poppins(
-                          fontSize: 14.sp,
+                          fontSize: 15.sp,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -291,7 +291,7 @@ class _CourseAfterPremiumScreenState extends State<CourseAfterPremiumScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('TWK Practice Set', style: GoogleFonts.poppins(fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.black)),
+                            Text('TWK Practice Set', style: GoogleFonts.poppins(fontSize: 15.sp, fontWeight: FontWeight.w500, color: Colors.black)),
                             Text('Improve your national insight and exam accuracy', 
                               style: GoogleFonts.poppins(fontSize: 11.sp, color: Colors.grey)),
                           ],
@@ -312,7 +312,7 @@ class _CourseAfterPremiumScreenState extends State<CourseAfterPremiumScreen> {
                 Text(
                   'View All',
                   style: GoogleFonts.poppins(
-                    fontSize: 14.sp,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
                     color: const Color(0xFFC4E839), 
                   ),
@@ -414,7 +414,7 @@ class _CourseAfterPremiumScreenState extends State<CourseAfterPremiumScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Try Now', 
-                style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 14.sp)),
+                style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 15.sp)),
               SizedBox(width: 12.w),
               const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 14),
             ],

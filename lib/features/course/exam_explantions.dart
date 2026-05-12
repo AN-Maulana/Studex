@@ -210,7 +210,7 @@ class _ExamExplanationsState extends State<ExamExplanations> {
                           Text(
                             "Indonesia's fisheries governance is strictly regulated under Law No. 31/2004 (amended by Law No. 45/2009). The primary focus is on Sustainable Management.\n\nThe term \"short-term exploitation optimization\" is contrary to the core principle of sustainability, which seeks to preserve resources for future generations.",
                             style: GoogleFonts.poppins(
-                              fontSize: 14.sp,
+                              fontSize: 15.sp,
                               color: Colors.black54,
                               height: 1.5,
                             ),
@@ -278,7 +278,7 @@ class _ExamExplanationsState extends State<ExamExplanations> {
           children: [
             const Icon(Icons.access_time, color: Color(0xFFD32F2F), size: 20),
             SizedBox(width: 5.w),
-            Text('59:45', style: GoogleFonts.poppins(color: const Color(0xFFD32F2F), fontWeight: FontWeight.w600, fontSize: 14.sp)),
+            Text('59:45', style: GoogleFonts.poppins(color: const Color(0xFFD32F2F), fontWeight: FontWeight.w600, fontSize: 15.sp)),
           ],
         )
       ],
@@ -329,7 +329,7 @@ class _ExamExplanationsState extends State<ExamExplanations> {
           ),
           SizedBox(width: 15.w),
           Expanded(
-            child: Text(text, style: GoogleFonts.poppins(fontSize: 14.sp, fontWeight: FontWeight.w400, color: Colors.black87)),
+            child: Text(text, style: GoogleFonts.poppins(fontSize: 15.sp, fontWeight: FontWeight.w400, color: Colors.black87)),
           ),
         ],
       ),
@@ -348,7 +348,7 @@ class _ExamExplanationsState extends State<ExamExplanations> {
         children: [
           if (icon != null && isLeading) Icon(icon, size: 20, color: textColor),
           if (icon != null && isLeading) SizedBox(width: 4.w),
-          Text(label, style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: 14.sp, color: textColor)),
+          Text(label, style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: 15.sp, color: textColor)),
           if (icon != null && !isLeading) SizedBox(width: 4.w),
           if (icon != null && !isLeading) Icon(icon, size: 20, color: textColor),
         ],

@@ -28,9 +28,12 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Mengecek apakah keyboard sedang terbuka
+    final bool isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
+
     return Scaffold(
-      // resizeToAvoidBottomInset: false agar tidak overflow saat keyboard muncul
-      resizeToAvoidBottomInset: false,
+      // Mengubah menjadi true agar layar bisa menyesuaikan ukuran saat keyboard muncul
+      resizeToAvoidBottomInset: true,
       extendBody: true, 
       backgroundColor: AppColors.background,
       body: PageView(
@@ -38,7 +41,8 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
         physics: const NeverScrollableScrollPhysics(),
         children: _screens,
       ),
-      bottomNavigationBar: _buildBottomNav(),
+      // Menyembunyikan bottom nav bar saat keyboard terbuka agar tidak mengambang
+      bottomNavigationBar: isKeyboardOpen ? null : _buildBottomNav(),
     );
   }
 
@@ -77,7 +81,8 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
             unselectedItemColor: AppColors.textGrey.withOpacity(0.5),
             showSelectedLabels: true,
             showUnselectedLabels: true,
-            // Menggunakan Poppins w400 (Regular) sesuai spek Figma sebelumnya
+            selectedFontSize: 9.sp,
+            unselectedFontSize: 9.sp,
             selectedLabelStyle: GoogleFonts.poppins(
               fontSize: 9.sp, 
               fontWeight: FontWeight.w500, // Medium untuk item terpilih
@@ -91,9 +96,9 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
             items: [
 
               _buildNavItem(Iconsax.home, Iconsax.home5, 'Home'),
-              _buildNavItem(Iconsax.book, Iconsax.book_15, 'Course'),
-              _buildNavItem(Iconsax.video_play, Iconsax.video_play5, 'Coaching'),
-              _buildNavItem(Iconsax.user, Iconsax.user_square5, 'Profile'),
+              _buildNavItem(Iconsax.book, Iconsax.book, 'Course'),
+              _buildNavItem(Iconsax.video_play, Iconsax.video_play, 'Coaching'),
+              _buildNavItem(Iconsax.user, Iconsax.user, 'Profile'),
             ],
           ),
         ),

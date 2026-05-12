@@ -159,7 +159,7 @@ class PurchaseHistoryScreen extends StatelessWidget {
                 Text(
                   title,
                   style: GoogleFonts.poppins(
-                    fontSize: 14.sp,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -181,7 +181,7 @@ class PurchaseHistoryScreen extends StatelessWidget {
                     Text(
                       price,
                       style: GoogleFonts.poppins(
-                        fontSize: 14.sp,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w600,
                         color: AppColors.primaryLime.withOpacity(0.8).withBlue(100), // Slightly darker for readability
                       ),

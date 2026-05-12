@@ -49,11 +49,9 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                 padding: EdgeInsets.all(20.w),
                 child: Column(
                   children: [
-                    /// TOP BAR
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // TOMBOL SAVE YANG INTERAKTIF
+                      children: [            
                         InkWell(
                           onTap: () {
                             setState(() {
@@ -183,10 +181,7 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                 padding: EdgeInsets.all(20.w),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(32.r),
-                    topRight: Radius.circular(32.r),
-                  ),
+                  borderRadius: BorderRadius.circular(32.r),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,8 +207,9 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                                 Text(
                                   'Damar Firdauzi, S.Pi',
                                   style: GoogleFonts.poppins(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
                                   ),
                                 ),
 
@@ -270,8 +266,9 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                     Text(
                       'Strategis to Ace the CPNS Exam',
                       style: GoogleFonts.poppins(
-                        fontSize: 24.sp,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w600,
+                        color: Colors.black,
                       ),
                     ),
 
@@ -283,7 +280,7 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
 
                     SizedBox(height: 24.h),
 
-                    /// CHAT INPUT
+                    
                     Row(
                       children: [
                         Expanded(
@@ -296,6 +293,19 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                               borderRadius: BorderRadius.circular(30.r),
                             ),
                             child: TextField(
+                              textAlignVertical: TextAlignVertical.center,
+                              textInputAction: TextInputAction.send,
+                              onTapOutside: (event) {
+                                FocusScope.of(context).unfocus();
+                              },
+                              onSubmitted: (value) {
+                                FocusScope.of(context).unfocus();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Message Sent'),
+                                  ),
+                                );
+                              },
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Ask your question here',
@@ -303,6 +313,7 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                                   color: Colors.grey,
                                   fontSize: 12.sp,
                                 ),
+                                contentPadding: EdgeInsets.symmetric(vertical: 10.h),
                               ),
                             ),
                           ),
@@ -319,6 +330,7 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                           ),
                           child: IconButton(
                             onPressed: () {
+                              FocusScope.of(context).unfocus();
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text('Message Sent'),
@@ -335,15 +347,45 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                       ],
                     ),
 
-                    SizedBox(height: 30.h),
+                  ],
+                ),
+              ),
 
+              SizedBox(height: 15.h),
+
+              /// LEARNERS SECTION
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(20.w),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(32.r),
+                    topRight: Radius.circular(32.r),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     /// LEARNERS
-                    Text(
-                      'Learners',
-                      style: GoogleFonts.poppins(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Learners',
+                          style: GoogleFonts.poppins(
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 6.h),
+                        Container(
+                          width: 65.w,
+                          height: 2.h,
+                          color: const Color(0xFFDDF247),
+                        ),
+                      ],
                     ),
 
                     SizedBox(height: 20.h),
@@ -360,7 +402,7 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                     SizedBox(height: 20.h),
 
                     _buildLearnerItem(
-                      name: 'Fajar',
+                      name: 'Adinda Y.',
                       time: '9 minutes ago',
                       question:
                           'Bagaimana cara meningkatkan kemampuan logika untuk soal TIU?',
@@ -371,7 +413,7 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                     SizedBox(height: 20.h),
 
                     _buildLearnerItem(
-                      name: 'Susi',
+                      name: 'Adinda Y.',
                       time: '12 minutes ago',
                       question:
                           'Pak Damar, bisa dijelaskan tentang metode cepat soal TKP?',
@@ -441,8 +483,9 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                   Text(
                     name,
                     style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15.sp,
+                      color: Colors.black,
                     ),
                   ),
                   SizedBox(width: 6.w),
@@ -497,6 +540,7 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                                 style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12.sp,
+                                  color: Colors.black,
                                 ),
                               ),
                               SizedBox(width: 6.w),
