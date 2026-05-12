@@ -112,7 +112,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               Text(
                 planTitle,
                 style: GoogleFonts.poppins(
-                  fontSize: 14.sp,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),
@@ -194,7 +194,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         Text(
           'Promo Code',
           style: GoogleFonts.poppins(
-            fontSize: 14.sp,
+            fontSize: 15.sp,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
@@ -207,7 +207,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 decoration: InputDecoration(
                   hintText: 'Promo Code',
                   hintStyle: GoogleFonts.poppins(
-                    fontSize: 14.sp,
+                    fontSize: 15.sp,
                     color: Colors.grey,
                   ),
                   prefixIcon: Padding(
@@ -224,7 +224,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   ),
                 ),
                 style: GoogleFonts.poppins(
-                  fontSize: 14.sp,
+                  fontSize: 15.sp,
                   color: Colors.black87,
                 ),
               ),
@@ -239,7 +239,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               child: Text(
                 'Apply',
                 style: GoogleFonts.poppins(
-                  fontSize: 14.sp,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
                 ),
@@ -264,7 +264,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           Text(
             'Payment Method',
             style: GoogleFonts.poppins(
-              fontSize: 14.sp,
+              fontSize: 15.sp,
               fontWeight: FontWeight.w600,
               color: Colors.black,
             ),
@@ -336,7 +336,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           Text(
             title,
             style: GoogleFonts.poppins(
-              fontSize: 14.sp,
+              fontSize: 15.sp,
               fontWeight: FontWeight.w600,
               color: Colors.black87,
             ),
@@ -474,7 +474,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 style: GoogleFonts.poppins(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
-                  fontSize: 14.sp,
+                  fontSize: 15.sp,
                 ),
               ),
             ),

@@ -49,7 +49,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                     Text(
                       'Verify Your Email',
                       style: GoogleFonts.poppins(
-                        fontSize: 14.sp,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
                       ),
@@ -121,7 +121,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           Text(
             'Verify OTP',
             style: GoogleFonts.poppins(
-              fontSize: 14.sp,
+              fontSize: 15.sp,
               fontWeight: FontWeight.w500,
               color: Colors.black,
             ),
@@ -208,7 +208,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           child: Text(
             'Verify',
             style: GoogleFonts.poppins(
-              fontSize: 14.sp,
+              fontSize: 15.sp,
               fontWeight: FontWeight.w500,
               color: Colors.black,
             ),

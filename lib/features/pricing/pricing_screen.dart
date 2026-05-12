@@ -68,7 +68,7 @@ class _PricingScreenState extends State<PricingScreen> {
         Text(
           'Upgrade to Premium',
           style: GoogleFonts.poppins(
-            fontSize: 14.sp,
+            fontSize: 15.sp,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
@@ -92,7 +92,7 @@ class _PricingScreenState extends State<PricingScreen> {
         Text(
           'Current Plan',
           style: GoogleFonts.poppins(
-            fontSize: 14.sp,
+            fontSize: 15.sp,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
@@ -116,7 +116,7 @@ class _PricingScreenState extends State<PricingScreen> {
                       Text(
                         'Free Tier',
                         style: GoogleFonts.poppins(
-                          fontSize: 14.sp,
+                          fontSize: 15.sp,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                         ),
@@ -187,7 +187,7 @@ class _PricingScreenState extends State<PricingScreen> {
         Text(
           'Recommended Update',
           style: GoogleFonts.poppins(
-            fontSize: 14.sp,
+            fontSize: 15.sp,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
@@ -221,7 +221,7 @@ class _PricingScreenState extends State<PricingScreen> {
               Text(
                 'Get full access to all materials and\nexclusive features to boost your score.',
                 style: GoogleFonts.poppins(
-                  fontSize: 14.sp,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
                   height: 1.4,
@@ -291,7 +291,7 @@ class _PricingScreenState extends State<PricingScreen> {
         Text(
           'Choose Your Premium Plan',
           style: GoogleFonts.poppins(
-            fontSize: 14.sp,
+            fontSize: 15.sp,
            fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
@@ -373,7 +373,7 @@ class _PricingScreenState extends State<PricingScreen> {
                   Text(
                     title,
                     style: GoogleFonts.poppins(
-                      fontSize: 14.sp,
+                      fontSize: 15.sp,
                       fontWeight: FontWeight.w600,
                       color: isSelected ? Colors.white : Colors.black,
                     ),
@@ -449,7 +449,7 @@ class _PricingScreenState extends State<PricingScreen> {
               style: GoogleFonts.poppins(
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
-                fontSize: 14.sp,
+                fontSize: 15.sp,
               ),
             ),
           ),

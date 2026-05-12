@@ -151,6 +151,7 @@ class _CoachingScreenState extends State<CoachingScreen> {
                       style: GoogleFonts.poppins(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w600,
+                        color: Colors.black,
                       ),
                     ),
                     SizedBox(height: 16.h),
@@ -237,7 +238,7 @@ class _CoachingScreenState extends State<CoachingScreen> {
                     date,
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
-                      fontSize: 14.sp,
+                      fontSize: 15.sp,
                       color: Colors.black,
                     ),
                   ),
@@ -269,7 +270,7 @@ class _CoachingScreenState extends State<CoachingScreen> {
               ),
             ),
             SizedBox(height: 14.h),
-            Text('Strategies to Ace the CPNS Exam', style: GoogleFonts.poppins(fontSize: 18.sp, fontWeight: FontWeight.w600)),
+            Text('Strategies to Ace the CPNS Exam', style: GoogleFonts.poppins(fontSize: 18.sp, fontWeight: FontWeight.w600, color: Colors.black)),
             SizedBox(height: 10.h),
             _buildBulletPoint('Tips for TWK, TIU, TKP'),
             _buildBulletPoint('Live Q&A session'),
@@ -277,7 +278,7 @@ class _CoachingScreenState extends State<CoachingScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Today • 8:00 AM', style: GoogleFonts.poppins(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                Text('Today • 8:00 AM', style: GoogleFonts.poppins(fontSize: 12.sp, fontWeight: FontWeight.w500, color: Colors.black)),
                 ElevatedButton(
                   onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const CoachingDetailScreen())),
                   style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFDDF247), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.r))),
@@ -305,7 +306,7 @@ class _CoachingScreenState extends State<CoachingScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Damar Firdauzi, S.Pi', style: GoogleFonts.poppins(fontSize: 13.sp, fontWeight: FontWeight.w600)),
+                  Text('Damar Firdauzi, S.Pi', style: GoogleFonts.poppins(fontSize: 13.sp, fontWeight: FontWeight.w600, color: Colors.black)),
                   Text('4.9 (1.972 Reviews)', style: GoogleFonts.poppins(fontSize: 11.sp, color: Colors.black45)),
                 ],
               )
@@ -315,7 +316,7 @@ class _CoachingScreenState extends State<CoachingScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Today • 4:00 PM', style: GoogleFonts.poppins(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+              Text('Today • 4:00 PM', style: GoogleFonts.poppins(fontSize: 12.sp, fontWeight: FontWeight.w500, color: Colors.black)),
               ElevatedButton(
                 onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const CoachingDetailEnrolnow())),
                 style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFDDF247), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.r))),

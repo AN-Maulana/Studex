@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   'Jack Smith Loren',
                   style: GoogleFonts.poppins(
-                    fontSize: 14.sp,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
@@ -159,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   title: Text(
                     'Update Course!',
-                    style: GoogleFonts.poppins(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                    style: GoogleFonts.poppins(fontSize: 15.sp, fontWeight: FontWeight.w500),
                   ),
                   subtitle: Text(
                     'New practice set for TWK is now available.',
@@ -296,7 +296,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: GoogleFonts.poppins(
-                              fontSize: 14.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w500,
                               color: Colors.black,
                             ),
@@ -401,7 +401,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       'TWK Practice Set',
                       style: GoogleFonts.poppins(
-                        fontSize: 14.sp,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w500,
                         color: isHovered ? Colors.white : Colors.black,
                       ),

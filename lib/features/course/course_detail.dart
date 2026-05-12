@@ -41,7 +41,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                       Text(
                         'Marine & Fisheries',
                         style: GoogleFonts.poppins(
-                          fontSize: 14.sp,
+                          fontSize: 15.sp,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                         ),
@@ -150,7 +150,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                         '"The balance between production and conservation is the key to the sustainability of Indonesia\'s marine resources."',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.poppins(
-                          fontSize: 14.sp,
+                          fontSize: 15.sp,
                           fontStyle: FontStyle.italic,
                           color: Colors.grey.shade600,
                         ),
@@ -272,7 +272,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
 
   TextStyle _navStyle() {
     return GoogleFonts.poppins(
-      fontSize: 14.sp,
+      fontSize: 15.sp,
       fontWeight: FontWeight.w600,
       color: Colors.orange,
     );

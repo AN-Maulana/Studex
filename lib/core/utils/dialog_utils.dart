@@ -35,7 +35,7 @@ class DialogUtils {
                   message,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
-                    fontSize: 14.sp,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
                     color: Colors.white,
                     decoration: TextDecoration.none, // Since it's not inside a Scaffold

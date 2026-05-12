@@ -127,7 +127,7 @@ class _CourseScreenState extends State<CourseScreen> {
                         Text(
                           title,
                           style: GoogleFonts.poppins(
-                            fontSize: 14.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w700,
                             color: AppColors.black,
                           ),
@@ -238,11 +238,18 @@ class _CourseScreenState extends State<CourseScreen> {
                           Expanded(
                             child: TextField(
                               controller: _searchController,
+                              textInputAction: TextInputAction.search,
+                              onTapOutside: (event) {
+                                FocusScope.of(context).unfocus();
+                              },
+                              onSubmitted: (_) {
+                                FocusScope.of(context).unfocus();
+                              },
                               decoration: InputDecoration(
                                 hintText: 'Search your daily task',
                                 hintStyle: GoogleFonts.poppins(
                                   color: AppColors.textGrey,
-                                  fontSize: 14.sp,
+                                  fontSize: 15.sp,
                                 ),
                                 border: InputBorder.none,
                                 isDense: true,
@@ -281,7 +288,7 @@ class _CourseScreenState extends State<CourseScreen> {
                       child: Text(
                         'No courses found',
                         style: GoogleFonts.poppins(
-                          fontSize: 14.sp,
+                          fontSize: 15.sp,
                           fontWeight: FontWeight.w600,
                           color: AppColors.textGrey,
                         ),

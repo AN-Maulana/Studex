@@ -179,7 +179,7 @@ class _ExamScreenState extends State<ExamScreen> {
                               style: GoogleFonts.poppins(
                                 color: const Color(0xFFD32F2F),
                                 fontWeight: FontWeight.w600,
-                                fontSize: 14.sp,
+                                fontSize: 15.sp,
                               ),
                             ),
                           ],
@@ -291,7 +291,7 @@ class _ExamScreenState extends State<ExamScreen> {
               child: Text(
                 text,
                 style: GoogleFonts.poppins(
-                  fontSize: 14.sp,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w400,
                   color: Colors.black87,
                 ),
@@ -330,7 +330,7 @@ class _ExamScreenState extends State<ExamScreen> {
             style: GoogleFonts.poppins(
               color: textColor,
               fontWeight: FontWeight.w500,
-              fontSize: 14.sp,
+              fontSize: 15.sp,
             ),
           ),
           if (!isLeading && label != 'Submit') SizedBox(width: 4.w),

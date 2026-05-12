@@ -46,7 +46,7 @@ class _LessonListScreenState extends State<LessonListScreen> {
                       Text(
                         'Marine & Fisheries',
                         style: GoogleFonts.poppins(
-                          fontSize: 14.sp,
+                          fontSize: 15.sp,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -249,7 +249,7 @@ class _LessonListScreenState extends State<LessonListScreen> {
                       children: [
                     Text(title,
                         style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.bold, fontSize: 14.sp)),
+                            fontWeight: FontWeight.bold, fontSize: 15.sp)),
                     Text(sub,
                         style: GoogleFonts.poppins(
                             color: Colors.grey, fontSize: 11.sp))
@@ -438,7 +438,7 @@ class _LessonListScreenState extends State<LessonListScreen> {
           children: [
             Text(title,
                 style: GoogleFonts.poppins(
-                    fontSize: 14.sp,
+                    fontSize: 15.sp,
                     fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
                     color: isActive ? Colors.black : Colors.grey)),
             if (isActive)

@@ -203,7 +203,7 @@ class CourseDetailScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('TWK Practice Set', style: GoogleFonts.poppins(fontSize: 14.sp, fontWeight: FontWeight.w600)),
+                        Text('TWK Practice Set', style: GoogleFonts.poppins(fontSize: 15.sp, fontWeight: FontWeight.w600)),
                         Text('Improve your national insight and exam accuracy', 
                           style: GoogleFonts.poppins(fontSize: 11.sp, color: Colors.grey)),
                       ],
@@ -297,7 +297,7 @@ class CourseDetailScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Join Premium', 
-              style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14.sp)),
+              style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 15.sp)),
             SizedBox(width: 12.w),
             const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 14),
           ],
@@ -328,7 +328,7 @@ class CourseDetailScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.r),
       ),
       alignment: Alignment.center,
-      child: Text(label, style: GoogleFonts.poppins(color: textCol, fontWeight: FontWeight.bold, fontSize: 14.sp)),
+      child: Text(label, style: GoogleFonts.poppins(color: textCol, fontWeight: FontWeight.bold, fontSize: 15.sp)),
     );
   }
 }

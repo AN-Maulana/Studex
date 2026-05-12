@@ -9,6 +9,8 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController? controller;
   final TextInputType keyboardType;
   final Widget? prefixIcon;
+  final TextInputAction? textInputAction;
+  final Function(String)? onSubmitted;
 
   const CustomTextField({
     super.key,
@@ -17,6 +19,8 @@ class CustomTextField extends StatefulWidget {
     this.controller,
     this.keyboardType = TextInputType.text,
     this.prefixIcon,
+    this.textInputAction,
+    this.onSubmitted,
   });
 
   @override
@@ -37,6 +41,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
         controller: widget.controller,
         obscureText: widget.isPassword ? _obscureText : false,
         keyboardType: widget.keyboardType,
+        textInputAction: widget.textInputAction ?? TextInputAction.done,
+        onTapOutside: (event) {
+          FocusScope.of(context).unfocus();
+        },
+        onSubmitted: (value) {
+          FocusScope.of(context).unfocus();
+          if (widget.onSubmitted != null) {
+            widget.onSubmitted!(value);
+          }
+        },
         style: AppTypography.inputStyle,
         decoration: InputDecoration(
           hintText: widget.hintText,
