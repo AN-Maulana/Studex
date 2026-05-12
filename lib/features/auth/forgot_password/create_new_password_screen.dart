@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-// import '../../../core/theme/app_colors.dart'; // Uncomment jika digunakan
-// import '../../../core/theme/app_typography.dart'; // Uncomment jika digunakan
-// import '../../../core/constants/app_constants.dart'; // Uncomment jika digunakan
+
 import '../../../routes/app_routes.dart';
 
-// Ubah menjadi StatefulWidget
 class CreateNewPasswordScreen extends StatefulWidget {
   const CreateNewPasswordScreen({super.key});
 
@@ -21,19 +18,19 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F3F3), // Background abu-abu muda sesuai gambar
+      backgroundColor: const Color(0xFFF3F3F3), 
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 40.0),
           child: Column(
             children: [
-              // 1. Logo Studex Header (Di luar Card)
+              
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/logo.png', // Pastikan path benar
+                    'assets/images/logo.png', 
                     height: 80,
                   ),
                   const SizedBox(width: 8),
@@ -50,12 +47,12 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
               ),
               const SizedBox(height: 32),
 
-              // 2. White Card Container
+          
               Container(
                 padding: const EdgeInsets.all(32),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(40), // Radius besar sesuai gambar
+                  borderRadius: BorderRadius.circular(40), 
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.04),
@@ -66,7 +63,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start, // Rata kiri sesuai gambar
+                  crossAxisAlignment: CrossAxisAlignment.start, 
                   children: [
                     const Text(
                       'New Password',
@@ -94,11 +91,11 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                     ),
                     const SizedBox(height: 12),
                     TextField(
-                      obscureText: _obscureNewPassword, // Gunakan state
+                      obscureText: _obscureNewPassword, 
                       decoration: InputDecoration(
                         hintText: 'Enter your password',
                         hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
-                        // Tambahkan InkWell atau IconButton pada suffixIcon
+                        
                         suffixIcon: IconButton(
                           icon: Icon(
                             _obscureNewPassword 
@@ -107,7 +104,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                             color: Colors.grey,
                           ),
                           onPressed: () {
-                            // Ubah state saat tombol ditekan
+                            
                             setState(() {
                               _obscureNewPassword = !_obscureNewPassword;
                             });
@@ -127,12 +124,12 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
 
                     // Label Confirm Password
                     const Text(
-                      'New Password', // Sesuai teks di gambar "New Password" diulang dua kali
+                      'New Password', 
                       style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black),
                     ),
                     const SizedBox(height: 12),
                     TextField(
-                      obscureText: _obscureConfirmPassword, // Gunakan state berbeda
+                      obscureText: _obscureConfirmPassword,
                       decoration: InputDecoration(
                         hintText: 'Re-enter your new password',
                         hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),

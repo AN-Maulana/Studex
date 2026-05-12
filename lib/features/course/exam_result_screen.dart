@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart'; // Menggunakan iconsax untuk konsistensi icon
 
 // --- TAMBAHKAN IMPORT INI ---
 import 'exam_explantions.dart'; 
 
-class ExamResultScreen extends StatelessWidget {
+class ExamResultScreen extends StatefulWidget {
   const ExamResultScreen({super.key});
+
+  @override
+  State<ExamResultScreen> createState() => _ExamResultScreenState();
+}
+
+class _ExamResultScreenState extends State<ExamResultScreen> {
+  // State untuk melacak status bookmark
+  bool isSaved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -27,25 +36,36 @@ class ExamResultScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(height: 16.h),
+                        // --- HEADER SECTION ---
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: Container(
-                            height: 48.w,
-                            width: 48.w,
-                            decoration: const BoxDecoration(
-                              color: Color(0xFFF2F2F2),
-                              shape: BoxShape.circle,
-                            ),
-                            child: IconButton(
-                              icon: const Icon(Icons.bookmark_border_rounded,
-                                  color: Colors.black, size: 24),
-                              onPressed: () => Navigator.pop(context),
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                isSaved = !isSaved;
+                              });
+                            },
+                            borderRadius: BorderRadius.circular(50),
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 200),
+                              height: 48.w,
+                              width: 48.w,
+                              decoration: BoxDecoration(
+                                color: isSaved ? const Color(0xFF121212) : const Color(0xFFF2F2F2),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                isSaved ? Iconsax.archive_15 : Iconsax.archive_add,
+                                color: isSaved ? Colors.white : Colors.black,
+                                size: 24,
+                              ),
                             ),
                           ),
                         ),
 
                         SizedBox(height: 40.h),
 
+                        // --- SCORE CIRCLE ---
                         Stack(
                           alignment: Alignment.center,
                           children: [
@@ -118,6 +138,7 @@ class ExamResultScreen extends StatelessWidget {
 
                         SizedBox(height: 32.h),
 
+                        // --- STATS CARDS ---
                         Row(
                           children: [
                             _buildStatCard('42 : 15', 'time'),
@@ -129,7 +150,7 @@ class ExamResultScreen extends StatelessWidget {
                         const Spacer(),
                         SizedBox(height: 20.h),
 
-                        // --- UPDATE BAGIAN INI ---
+                        // --- BUTTONS ---
                         ElevatedButton(
                           onPressed: () {
                             Navigator.push(

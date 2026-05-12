@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart'; // Menggunakan iconsax agar konsisten dengan screen sebelumnya
 // Import file exam screen Anda di sini
 import 'exam_screen.dart'; 
 
@@ -14,6 +15,9 @@ class LessonListScreen extends StatefulWidget {
 class _LessonListScreenState extends State<LessonListScreen> {
   // Variabel untuk melacak tab mana yang aktif
   String activeTab = "Lessons";
+  
+  // State untuk melacak tombol save/bookmark
+  bool isSaved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +42,7 @@ class _LessonListScreenState extends State<LessonListScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildHeaderIcon(Icons.bookmark_border),
+                      _buildHeaderIcon(Iconsax.arrow_left, onTap: () => Navigator.pop(context)),
                       Text(
                         'Marine & Fisheries',
                         style: GoogleFonts.poppins(
@@ -46,7 +50,17 @@ class _LessonListScreenState extends State<LessonListScreen> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      _buildHeaderIcon(Icons.bookmark_border),
+                      // Tombol Save yang interaktif
+                      _buildHeaderIcon(
+                        isSaved ? Iconsax.archive_15 : Iconsax.archive_add,
+                        onTap: () {
+                          setState(() {
+                            isSaved = !isSaved;
+                          });
+                        },
+                        iconColor: isSaved ? Colors.white : Colors.black,
+                        bgColor: isSaved ? const Color(0xFF121212) : const Color(0xFFF5F5F5),
+                      ),
                     ],
                   ),
                   SizedBox(height: 20.h),
@@ -209,7 +223,7 @@ class _LessonListScreenState extends State<LessonListScreen> {
     );
   }
 
-  // --- 2. EXAM CARD (LOGIKA NAVIGASI DITAMBAHKAN) ---
+  // --- 2. EXAM CARD ---
   Widget _buildExamCard(BuildContext context, String title, String sub, String q,
       String d, String btn,
       {String? score, bool isPrimary = false}) {
@@ -254,7 +268,6 @@ class _LessonListScreenState extends State<LessonListScreen> {
               Expanded(
                 child: GestureDetector(
                   onTap: () {
-                    // Navigasi ke ExamScreen jika tombol "Start Exam"
                     if (btn == "Start Exam") {
                       Navigator.push(
                         context,
@@ -485,9 +498,20 @@ class _LessonListScreenState extends State<LessonListScreen> {
     ]);
   }
 
-  Widget _buildHeaderIcon(IconData icon) => Container(
-      padding: const EdgeInsets.all(8),
-      decoration:
-          const BoxDecoration(color: Color(0xFFF5F5F5), shape: BoxShape.circle),
-      child: Icon(icon, size: 20));
+  // Fungsi helper untuk tombol lingkaran di header yang diupdate
+  Widget _buildHeaderIcon(IconData icon, {VoidCallback? onTap, Color? iconColor, Color? bgColor}) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(50),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: bgColor ?? const Color(0xFFF5F5F5), 
+          shape: BoxShape.circle
+        ),
+        child: Icon(icon, size: 20, color: iconColor ?? Colors.black),
+      ),
+    );
+  }
 }

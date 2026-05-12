@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart'; // Import iconsax untuk konsistensi
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
 
 class CoachingDetailScreen extends StatefulWidget {
   const CoachingDetailScreen({super.key});
@@ -11,6 +13,9 @@ class CoachingDetailScreen extends StatefulWidget {
 }
 
 class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
+
+  bool _isSaved = false;
+
   late YoutubePlayerController _youtubeController;
 
   @override
@@ -30,7 +35,7 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
     _youtubeController.dispose();
     super.dispose();
   }
-
+    
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,20 +53,26 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          width: 42.w,
-                          height: 42.w,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                          ),
-                          child: IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: Icon(
-                              Icons.bookmark_border,
+                        // TOMBOL SAVE YANG INTERAKTIF
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              _isSaved = !_isSaved;
+                            });
+                          },
+                          borderRadius: BorderRadius.circular(50),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            width: 42.w,
+                            height: 42.w,
+                            decoration: BoxDecoration(
+                              color: _isSaved ? const Color(0xFF121212) : Colors.white,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              _isSaved ? Iconsax.archive_15 : Iconsax.archive_add,
                               size: 20.sp,
+                              color: _isSaved ? Colors.white : Colors.black,
                             ),
                           ),
                         ),

@@ -275,6 +275,7 @@ class _CourseScreenState extends State<CourseScreen> {
             ),
             SizedBox(height: 24.h),
             Expanded(
+
               child: filteredCourses.isEmpty
                   ? Center(
                       child: Text(
@@ -315,6 +316,7 @@ class _CourseScreenState extends State<CourseScreen> {
                                     ? const CourseAfterPremiumScreen()
                                     : const CourseBeforePremiumScreen(),
                               ),
+
                             );
                           },
                           child: Container(
@@ -335,10 +337,12 @@ class _CourseScreenState extends State<CourseScreen> {
                                           text: 'Math',
                                           backgroundColor: AppColors.tagMathBg,
                                         ),
+
                                         SizedBox(width: 8.w),
                                         CustomTag(
                                           text: 'Science',
                                           backgroundColor: AppColors.tagScienceBg,
+
                                         ),
                                       ],
                                     ),
@@ -443,6 +447,7 @@ class _CourseScreenState extends State<CourseScreen> {
                                     ),
                                   ],
                                 ),
+
                               ],
                             ),
                           ),

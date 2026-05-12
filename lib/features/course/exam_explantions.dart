@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart'; // Import iconsax untuk konsistensi icon save
 
 class ExamExplanations extends StatefulWidget {
   const ExamExplanations({super.key});
@@ -12,6 +13,9 @@ class ExamExplanations extends StatefulWidget {
 class _ExamExplanationsState extends State<ExamExplanations> {
   int currentQuestionIndex = 0;
   final int totalQuestions = 7;
+  
+  // State untuk melacak status bookmark
+  bool isSaved = false;
 
   // Data simulasi: status jawaban user (true = benar, false = salah)
   // Nomor 1 (index 0) salah, sisanya benar.
@@ -56,7 +60,17 @@ class _ExamExplanationsState extends State<ExamExplanations> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildIconButton(Icons.bookmark_border_rounded),
+                      // Update: Tombol Bookmark yang interaktif
+                      _buildHeaderIconButton(
+                        isSaved ? Iconsax.archive_15 : Iconsax.archive_add,
+                        onTap: () {
+                          setState(() {
+                            isSaved = !isSaved;
+                          });
+                        },
+                        iconColor: isSaved ? Colors.white : Colors.black,
+                        bgColor: isSaved ? const Color(0xFF121212) : const Color(0xFFF2F2F2),
+                      ),
                       Text(
                         'Exam',
                         style: GoogleFonts.poppins(
@@ -230,7 +244,7 @@ class _ExamExplanationsState extends State<ExamExplanations> {
                     onTap: _nextQuestion,
                     child: _buildNavButton(
                       null, 
-                      "Submit", 
+                      currentQuestionIndex == totalQuestions - 1 ? "Finish" : "Next", 
                       const Color(0xFFD4F05B), 
                       Colors.black, 
                       isLeading: false
@@ -342,12 +356,21 @@ class _ExamExplanationsState extends State<ExamExplanations> {
     );
   }
 
-  Widget _buildIconButton(IconData icon) {
-    return Container(
-      width: 48.w,
-      height: 48.w,
-      decoration: const BoxDecoration(color: Color(0xFFF2F2F2), shape: BoxShape.circle),
-      child: IconButton(icon: Icon(icon, size: 24, color: Colors.black), onPressed: () {}),
+  // Helper untuk tombol icon di header dengan animasi state
+  Widget _buildHeaderIconButton(IconData icon, {required VoidCallback onTap, required Color iconColor, required Color bgColor}) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(50),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        width: 48.w,
+        height: 48.w,
+        decoration: BoxDecoration(
+          color: bgColor,
+          shape: BoxShape.circle,
+        ),
+        child: Icon(icon, size: 24, color: iconColor),
+      ),
     );
   }
 }

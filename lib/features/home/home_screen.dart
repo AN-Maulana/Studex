@@ -19,23 +19,33 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(
-            left: 20.w,
-            right: 20.w,
-            top: 20.h,
-            bottom: 100.h,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildHeader(),
-              SizedBox(height: 25.h),
-              _buildLearningInProgress(),
-              SizedBox(height: 25.h),
-              _buildRecommended(),
-            ],
-          ),
+        child: Column(
+          children: [
+            // HEADER TETAP (FIXED) DI ATAS
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+              child: _buildHeader(),
+            ),
+            
+            // AREA KONTEN YANG BISA DI-SCROLL
+            Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(
+                  left: 20.w,
+                  right: 20.w,
+                  bottom: 100.h,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildLearningInProgress(),
+                    SizedBox(height: 25.h),
+                    _buildRecommended(),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -92,7 +102,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        // FUNGSI NOTIFIKASI
         IconButton(
           onPressed: () => _showNotificationSheet(context),
           icon: Container(
@@ -108,7 +117,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // MODAL POP UP NOTIFIKASI
   void _showNotificationSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -181,7 +189,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.black,
               ),
             ),
-            // HOVER & KLIK PADA SEE ALL
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -209,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
           height: 195.h,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemCount: 2,
+            itemCount: 3, // DITAMBAH MENJADI 3 CARD
             separatorBuilder: (_, __) => SizedBox(width: 16.w),
             itemBuilder: (context, index) {
               return _buildProgressCard(width: 280.w);
@@ -344,7 +351,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: 2,
+          itemCount: 3, // DITAMBAH MENJADI 3 CARD
           separatorBuilder: (_, __) => SizedBox(height: 16.h),
           itemBuilder: (context, index) {
             bool isHovered = hoveredIndex == index;
@@ -384,7 +391,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(20.r),
                       child: Image.network(
-                        'https://picsum.photos/seed/${index + 5}/400/200',
+                        'https://picsum.photos/seed/${index + 12}/400/200',
                         height: 140.h,
                         width: double.infinity,
                         fit: BoxFit.cover,
@@ -535,7 +542,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// HALAMAN SEE ALL (Lengkap)
 class LearningProgressScreen extends StatelessWidget {
   const LearningProgressScreen({super.key});
 
@@ -564,7 +570,6 @@ class LearningProgressScreen extends StatelessWidget {
         itemCount: 5,
         separatorBuilder: (_, __) => SizedBox(height: 16.h),
         itemBuilder: (context, index) {
-          // Akses widget kartu dari state HomeScreen
           return _HomeScreenState()._buildProgressCard();
         },
       ),

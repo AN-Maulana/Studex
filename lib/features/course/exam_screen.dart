@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart'; // Menggunakan iconsax untuk konsistensi icon bookmark
 
 // --- TAMBAHKAN IMPORT INI ---
 import 'exam_result_screen.dart';
@@ -16,6 +17,9 @@ class _ExamScreenState extends State<ExamScreen> {
   int currentQuestionIndex = 0;
   final int totalQuestions = 7;
   int? selectedAnswer;
+  
+  // State untuk melacak tombol bookmark
+  bool isBookmarked = false;
 
   void nextQuestion() {
     if (currentQuestionIndex < totalQuestions - 1) {
@@ -24,7 +28,7 @@ class _ExamScreenState extends State<ExamScreen> {
         selectedAnswer = null;
       });
     } else {
-      // --- LOGIKA DIUBAH UNTUK NAVIGASI ---
+      // --- LOGIKA NAVIGASI KE HASIL ---
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -66,7 +70,17 @@ class _ExamScreenState extends State<ExamScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildIconButton(Icons.bookmark_border_rounded),
+                      // Tombol Bookmark yang Interaktif
+                      _buildHeaderIconButton(
+                        isBookmarked ? Iconsax.archive_15 : Iconsax.archive_add,
+                        onTap: () {
+                          setState(() {
+                            isBookmarked = !isBookmarked;
+                          });
+                        },
+                        iconColor: isBookmarked ? Colors.white : Colors.black,
+                        bgColor: isBookmarked ? const Color(0xFF121212) : const Color(0xFFF2F2F2),
+                      ),
                       Text(
                         'Exam',
                         style: GoogleFonts.poppins(
@@ -75,7 +89,7 @@ class _ExamScreenState extends State<ExamScreen> {
                           color: Colors.black,
                         ),
                       ),
-                      const SizedBox(width: 48), // Balancer for leading icon
+                      const SizedBox(width: 48), // Balancer
                     ],
                   ),
                   SizedBox(height: 25.h),
@@ -231,17 +245,20 @@ class _ExamScreenState extends State<ExamScreen> {
     );
   }
 
-  Widget _buildIconButton(IconData icon) {
-    return Container(
-      width: 48.w,
-      height: 48.w,
-      decoration: const BoxDecoration(
-        color: Color(0xFFF2F2F2),
-        shape: BoxShape.circle,
-      ),
-      child: IconButton(
-        icon: Icon(icon, color: Colors.black, size: 24),
-        onPressed: () {},
+  // Helper untuk tombol icon di header dengan state warna
+  Widget _buildHeaderIconButton(IconData icon, {required VoidCallback onTap, required Color iconColor, required Color bgColor}) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(50),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        width: 48.w,
+        height: 48.w,
+        decoration: BoxDecoration(
+          color: bgColor,
+          shape: BoxShape.circle,
+        ),
+        child: Icon(icon, color: iconColor, size: 24),
       ),
     );
   }
@@ -298,7 +315,7 @@ class _ExamScreenState extends State<ExamScreen> {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
-        disabledBackgroundColor: color,
+        disabledBackgroundColor: color.withOpacity(0.5),
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),

@@ -6,8 +6,16 @@ import '../../core/constants/dummy_data.dart';
 import '../../core/theme/app_colors.dart';
 import '../pricing/pricing_screen.dart';
 
-class CourseBeforePremiumScreen extends StatelessWidget {
+class CourseBeforePremiumScreen extends StatefulWidget {
   const CourseBeforePremiumScreen({super.key});
+
+  @override
+  State<CourseBeforePremiumScreen> createState() => _CourseBeforePremiumScreenState();
+}
+
+class _CourseBeforePremiumScreenState extends State<CourseBeforePremiumScreen> {
+  // State untuk menyimpan status apakah tombol save sudah diklik atau belum
+  bool isSaved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -60,21 +68,38 @@ class CourseBeforePremiumScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        _buildCircleButton(Iconsax.bookmark, () {}),
+        // Menggunakan logic state isSaved untuk mengatur icon dan warna
+        _buildCircleButton(
+          isSaved ? Iconsax.archive_15 : Iconsax.archive_add, 
+          () {
+            setState(() {
+              isSaved = !isSaved; // Toggle status
+            });
+          },
+          iconColor: isSaved ? Colors.white : Colors.black,
+          bgColor: isSaved ? const Color(0xFF121212) : Colors.white,
+        ),
       ],
     );
   }
 
-  Widget _buildCircleButton(IconData icon, VoidCallback onTap) {
+  Widget _buildCircleButton(
+    IconData icon, 
+    VoidCallback onTap, {
+    Color iconColor = Colors.black, 
+    Color bgColor = Colors.white,
+  }) {
     return InkWell(
       onTap: onTap,
-      child: Container(
+      borderRadius: BorderRadius.circular(50),
+      child: AnimatedContainer( // Menggunakan AnimatedContainer agar perubahan warna halus
+        duration: const Duration(milliseconds: 200),
         padding: EdgeInsets.all(12.w),
-        decoration: const BoxDecoration(
-          color: Colors.white,
+        decoration: BoxDecoration(
+          color: bgColor,
           shape: BoxShape.circle,
         ),
-        child: Icon(icon, size: 20.sp, color: Colors.black),
+        child: Icon(icon, size: 20.sp, color: iconColor),
       ),
     );
   }
@@ -157,7 +182,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
-                          color: Colors.black, // Tambahkan baris ini
+                          color: Colors.black,
                         ),
                       ),
                       Row(
@@ -165,7 +190,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
                           const Icon(
                             Icons.star,
                             size: 12,
-                            color: const Color(0xFFF1B401)
+                            color: Color(0xFFF1B401),
                           ),
                           Text(
                             ' 4.9 (1.972 Reviews)',
@@ -193,9 +218,8 @@ class CourseBeforePremiumScreen extends StatelessWidget {
                         text: '17 ',
                         style: GoogleFonts.poppins(
                           fontSize: 12.sp,
-                          fontWeight: FontWeight
-                              .w500, // Lebih tebal agar angka lebih menonjol
-                          color: Colors.black, // Angka menjadi Hitam
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
                         ),
                       ),
                       TextSpan(
@@ -203,7 +227,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w500,
-                          color: Colors.grey, // Kata 'topics' tetap abu-abu
+                          color: Colors.grey,
                         ),
                       ),
                     ],
@@ -253,9 +277,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
                     width: 44.w,
                     height: 44.w,
                     decoration: const BoxDecoration(
-                      color: Color(
-                        0xFFF8F8F8,
-                      ), 
+                      color: Color(0xFFF8F8F8),
                       shape: BoxShape.circle,
                     ),
                     alignment: Alignment.center,
@@ -389,7 +411,7 @@ class CourseBeforePremiumScreen extends StatelessWidget {
                       (i) => const Icon(
                         Icons.star,
                         size: 14,
-                        color: const Color(0xFFF1B401)
+                        color: Color(0xFFF1B401),
                       ),
                     ),
                   ),
