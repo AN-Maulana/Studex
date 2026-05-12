@@ -1,13 +1,42 @@
+import 'dart:io'; // Tambahkan ini
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:image_picker/image_picker.dart'; // Tambahkan ini
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/dialog_utils.dart';
 import 'change_password_screen.dart';
 
-class EditProfileScreen extends StatelessWidget {
+class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
+
+  @override
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
+  // Variabel untuk menyimpan file gambar yang dipilih
+  File? _image;
+  final ImagePicker _picker = ImagePicker();
+
+  // Fungsi untuk mengambil gambar dari galeri
+  Future<void> _pickImage() async {
+    try {
+      final XFile? pickedFile = await _picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 80, // Mengompres gambar agar tidak terlalu berat
+      );
+
+      if (pickedFile != null) {
+        setState(() {
+          _image = File(pickedFile.path);
+        });
+      }
+    } catch (e) {
+      debugPrint("Error picking image: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +51,7 @@ class EditProfileScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
                 child: Column(
                   children: [
-                    _buildAvatar(),
+                    _buildAvatar(), // Widget avatar yang sudah diupdate
                     SizedBox(height: 32.h),
                     _buildInputField('Username', 'Jack Smith Loren'),
                     SizedBox(height: 16.h),
@@ -55,8 +84,8 @@ class EditProfileScreen extends StatelessWidget {
             onTap: () => Navigator.pop(context),
             child: Container(
               padding: EdgeInsets.all(12.w),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF5F5F5),
+              decoration: const BoxDecoration(
+                color: Color(0xFFF5F5F5),
                 shape: BoxShape.circle,
               ),
               child: Icon(Iconsax.arrow_left, size: 20.sp, color: Colors.black),
@@ -70,7 +99,7 @@ class EditProfileScreen extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          SizedBox(width: 44.w), // To keep the title centered
+          SizedBox(width: 44.w),
         ],
       ),
     );
@@ -82,21 +111,30 @@ class EditProfileScreen extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 40.r,
-          backgroundImage: const NetworkImage('https://i.pravatar.cc/150?img=11'),
+          backgroundColor: Colors.grey.shade200,
+          // Logika penggantian gambar: Jika _image ada pakai FileImage, jika tidak pakai NetworkImage default
+          backgroundImage: _image != null
+              ? FileImage(_image!) as ImageProvider
+              : const NetworkImage('https://i.pravatar.cc/150?img=11'),
         ),
-        Container(
-          padding: EdgeInsets.all(4.w),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 4,
-              ),
-            ],
+        // Tombol kamera sekarang berfungsi
+        InkWell(
+          onTap: _pickImage,
+          child: Container(
+            padding: EdgeInsets.all(6.w),
+            decoration: BoxDecoration(
+              color: AppColors.primaryLime, // Menggunakan warna utama app Anda
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white, width: 2),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 4,
+                ),
+              ],
+            ),
+            child: Icon(Iconsax.camera, size: 16.sp, color: Colors.black),
           ),
-          child: Icon(Iconsax.camera, size: 14.sp, color: Colors.black),
         ),
       ],
     );

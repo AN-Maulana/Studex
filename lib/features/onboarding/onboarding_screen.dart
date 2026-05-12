@@ -14,9 +14,9 @@ class OnboardingScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // 1. Gambar Background Utama
+          // 1. Gambar Background Utama (DIUBAH KE image23.png)
           Image.asset(
-            'assets/images/gg.jpg', 
+            'assets/images/image23.png', 
             fit: BoxFit.cover,
           ),
 
