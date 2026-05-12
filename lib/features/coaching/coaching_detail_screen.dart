@@ -202,7 +202,8 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                                   'Damar Firdauzi, S.Pi',
                                   style: GoogleFonts.poppins(
                                     fontSize: 14.sp,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
                                   ),
                                 ),
 
@@ -259,8 +260,9 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                     Text(
                       'Strategis to Ace the CPNS Exam',
                       style: GoogleFonts.poppins(
-                        fontSize: 24.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
+                        color: Colors.black,
                       ),
                     ),
 
@@ -330,8 +332,9 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                     Text(
                       'Learners',
                       style: GoogleFonts.poppins(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
                       ),
                     ),
 
@@ -349,7 +352,7 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                     SizedBox(height: 20.h),
 
                     _buildLearnerItem(
-                      name: 'Fajar',
+                      name: 'Adinda Y.',
                       time: '9 minutes ago',
                       question:
                           'Bagaimana cara meningkatkan kemampuan logika untuk soal TIU?',
@@ -360,7 +363,7 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                     SizedBox(height: 20.h),
 
                     _buildLearnerItem(
-                      name: 'Susi',
+                      name: 'Adinda Y.',
                       time: '12 minutes ago',
                       question:
                           'Pak Damar, bisa dijelaskan tentang metode cepat soal TKP?',
@@ -430,8 +433,9 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                   Text(
                     name,
                     style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14.sp,
+                      color: Colors.black,
                     ),
                   ),
                   SizedBox(width: 6.w),
@@ -486,6 +490,7 @@ class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
                                 style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12.sp,
+                                  color: Colors.black,
                                 ),
                               ),
                               SizedBox(width: 6.w),
