@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'lesson_list.dart'; // Import halaman tujuan
+import 'package:iconsax/iconsax.dart'; // Import iconsax untuk konsistensi icon save
+import 'lesson_list.dart';
 
-class CourseDetailScreen extends StatelessWidget {
+class CourseDetailScreen extends StatefulWidget {
   const CourseDetailScreen({super.key});
+
+  @override
+  State<CourseDetailScreen> createState() => _CourseDetailScreenState();
+}
+
+class _CourseDetailScreenState extends State<CourseDetailScreen> {
+  // State untuk melacak status simpan/bookmark
+  bool isSaved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +37,26 @@ class CourseDetailScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildIconButton(Icons.arrow_back, () => Navigator.pop(context)),
+                      _buildIconButton(Iconsax.arrow_left, () => Navigator.pop(context)),
                       Text(
                         'Marine & Fisheries',
                         style: GoogleFonts.poppins(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w600,
+                          color: Colors.black,
                         ),
                       ),
-                      _buildIconButton(Icons.bookmark_border_outlined, () {}),
+                      // Tombol Save/Bookmark yang Interaktif
+                      _buildIconButton(
+                        isSaved ? Iconsax.archive_15 : Iconsax.archive_add,
+                        () {
+                          setState(() {
+                            isSaved = !isSaved;
+                          });
+                        },
+                        iconColor: isSaved ? Colors.white : Colors.black,
+                        bgColor: isSaved ? const Color(0xFF121212) : const Color(0xFFF5F5F5),
+                      ),
                     ],
                   ),
                   SizedBox(height: 20.h),
@@ -48,6 +68,7 @@ class CourseDetailScreen extends StatelessWidget {
                         fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
                         height: 1.2,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -93,6 +114,7 @@ class CourseDetailScreen extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
                       SizedBox(height: 12.h),
@@ -101,7 +123,6 @@ class CourseDetailScreen extends StatelessWidget {
                         style: _bodyStyle(),
                       ),
                       SizedBox(height: 20.h),
-                      
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20.r),
                         child: Image.network(
@@ -114,7 +135,6 @@ class CourseDetailScreen extends StatelessWidget {
                         'Diagram 1.1: Production Cycle & Surveillance Flow',
                         style: _infoStyle().copyWith(fontSize: 10.sp),
                       ),
-                      
                       SizedBox(height: 20.h),
                       Text(
                         'Marine surveillance is carried out to ensure that every vessel operates with valid permits and complies with regulations set by WPPNRI (Indonesian Fisheries Management Areas).',
@@ -125,7 +145,6 @@ class CourseDetailScreen extends StatelessWidget {
                       _buildBulletPoint('Document verification: Checking SIUP, SIPI, and SIKPI before departure'),
                       _buildBulletPoint('Fishing gear inspection: Ensuring mesh size standards meet international regulations'),
                       _buildBulletPoint('Catch logbook monitoring: Tracking catch data in real time through e-logbooks'),
-                      
                       SizedBox(height: 25.h),
                       Text(
                         '"The balance between production and conservation is the key to the sustainability of Indonesia\'s marine resources."',
@@ -184,17 +203,18 @@ class CourseDetailScreen extends StatelessWidget {
 
   // --- Helper Widgets ---
 
-  Widget _buildIconButton(IconData icon, VoidCallback onTap) {
+  Widget _buildIconButton(IconData icon, VoidCallback onTap, {Color? iconColor, Color? bgColor}) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
+      borderRadius: BorderRadius.circular(50),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.all(8),
-        decoration: const BoxDecoration(
-          color: Color(0xFFF5F5F5),
+        decoration: BoxDecoration(
+          color: bgColor ?? const Color(0xFFF5F5F5),
           shape: BoxShape.circle,
         ),
-        child: Icon(icon, size: 20),
+        child: Icon(icon, size: 20, color: iconColor ?? Colors.black),
       ),
     );
   }
@@ -206,7 +226,7 @@ class CourseDetailScreen extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Progress', style: GoogleFonts.poppins(fontSize: 12.sp, fontWeight: FontWeight.w600)),
+            Text('Progress', style: GoogleFonts.poppins(fontSize: 12.sp, fontWeight: FontWeight.w600, color: Colors.black)),
             Text('64%', style: _infoStyle()),
           ],
         ),
@@ -230,7 +250,7 @@ class CourseDetailScreen extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('• ', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('• ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
           Expanded(child: Text(text, style: _bodyStyle())),
         ],
       ),

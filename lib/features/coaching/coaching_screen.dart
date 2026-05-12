@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart'; // Tambahkan package intl di pubspec.yaml
+import 'package:intl/intl.dart';
 
 import 'coaching_detail_screen.dart';
 import 'coaching_detail_enrolnow.dart';
@@ -14,10 +14,13 @@ class CoachingScreen extends StatefulWidget {
 }
 
 class _CoachingScreenState extends State<CoachingScreen> {
-  // Variabel untuk menyimpan tanggal yang dipilih (default hari ini)
   DateTime selectedDate = DateTime.now();
 
-  // Fungsi untuk memicu Date Picker sistem saat tombol kalender ditekan
+  // Fungsi untuk mendapatkan jumlah hari dalam bulan yang dipilih
+  int _getDaysInMonth(int year, int month) {
+    return DateTime(year, month + 1, 0).day;
+  }
+
   Future<void> _selectDateFromPicker(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -28,7 +31,7 @@ class _CoachingScreenState extends State<CoachingScreen> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: const ColorScheme.light(
-              primary: Color(0xFFDDF247), // Warna highlight picker
+              primary: Color(0xFFDDF247),
               onPrimary: Colors.black,
               onSurface: Colors.black,
             ),
@@ -46,6 +49,9 @@ class _CoachingScreenState extends State<CoachingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Mendapatkan jumlah hari untuk bulan yang sedang dipilih
+    final int daysCount = _getDaysInMonth(selectedDate.year, selectedDate.month);
+
     return Scaffold(
       backgroundColor: const Color(0xFFF7F7F7),
       body: SafeArea(
@@ -57,7 +63,6 @@ class _CoachingScreenState extends State<CoachingScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /// TITLE & DATE PICKER BUTTON
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -69,15 +74,10 @@ class _CoachingScreenState extends State<CoachingScreen> {
                           color: Colors.black,
                         ),
                       ),
-
-                      /// DATE DISPLAY (Klik untuk buka Picker)
                       GestureDetector(
                         onTap: () => _selectDateFromPicker(context),
                         child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 14.w,
-                            vertical: 8.h,
-                          ),
+                          padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(18.r),
@@ -91,10 +91,7 @@ class _CoachingScreenState extends State<CoachingScreen> {
                           ),
                           child: Row(
                             children: [
-                              Icon(
-                                Icons.calendar_today_rounded,
-                                size: 16.sp,
-                              ),
+                              Icon(Icons.calendar_today_rounded, size: 16.sp),
                               SizedBox(width: 6.w),
                               Text(
                                 DateFormat('MMM yyyy').format(selectedDate),
@@ -109,26 +106,26 @@ class _CoachingScreenState extends State<CoachingScreen> {
                       ),
                     ],
                   ),
-
                   SizedBox(height: 20.h),
-
-                  /// SEARCH BAR
                   _buildSearchBar(),
-
                   SizedBox(height: 20.h),
 
-                  /// HORIZONTAL DATE LIST
+                  /// HORIZONTAL DATE LIST (Menyesuaikan dengan Bulan Kalender)
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: List.generate(7, (index) {
-                        // Menampilkan 7 hari mulai dari tanggal yang dipilih di picker
-                        DateTime dayToShow = selectedDate.add(Duration(days: index - 2)); 
+                      children: List.generate(daysCount, (index) {
+                        // Membuat tanggal dari 1 sampai akhir bulan
+                        DateTime dayToShow = DateTime(selectedDate.year, selectedDate.month, index + 1); 
+                        
+                        bool isSelected = dayToShow.year == selectedDate.year &&
+                                          dayToShow.month == selectedDate.month &&
+                                          dayToShow.day == selectedDate.day;
+
                         return _buildDateItem(
-                          DateFormat('E').format(dayToShow), // Nama hari (Sun, Mon, dst)
-                          dayToShow.day.toString(),         // Nomor tanggal
-                          isActive: dayToShow.day == selectedDate.day && 
-                                   dayToShow.month == selectedDate.month,
+                          DateFormat('E').format(dayToShow),
+                          dayToShow.day.toString(),
+                          isActive: isSelected,
                           onTap: () {
                             setState(() {
                               selectedDate = dayToShow;
@@ -171,7 +168,6 @@ class _CoachingScreenState extends State<CoachingScreen> {
     );
   }
 
-  /// WIDGET SEARCH BAR
   Widget _buildSearchBar() {
     return Container(
       height: 52.h,
@@ -198,7 +194,6 @@ class _CoachingScreenState extends State<CoachingScreen> {
     );
   }
 
-  /// DATE ITEM (Sekarang mendukung interaksi klik)
   Widget _buildDateItem(
     String day,
     String date, {
@@ -215,7 +210,7 @@ class _CoachingScreenState extends State<CoachingScreen> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(25.r),
-          border: isActive ? Border.all(color: Colors.black.withOpacity(0.1)) : null,
+          border: isActive ? Border.all(color: Colors.black.withOpacity(0.05)) : null,
         ),
         child: Column(
           children: [
@@ -243,18 +238,9 @@ class _CoachingScreenState extends State<CoachingScreen> {
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
                       fontSize: 14.sp,
+                      color: Colors.black,
                     ),
                   ),
-                  if (hasUpdate)
-                    Container(
-                      margin: EdgeInsets.only(top: 2.h),
-                      width: 4.w,
-                      height: 4.w,
-                      decoration: const BoxDecoration(
-                        color: Colors.black,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
                 ],
               ),
             ),
@@ -263,9 +249,6 @@ class _CoachingScreenState extends State<CoachingScreen> {
       ),
     );
   }
-
-  // --- Widget Card di bawah ini sama dengan kode asli Anda, 
-  // --- hanya dibungkus rapi agar CoachingScreen lebih bersih.
 
   Widget _buildCoachingCard(BuildContext context) {
     return Container(
@@ -278,19 +261,15 @@ class _CoachingScreenState extends State<CoachingScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(22.r),
-                  child: Image.network(
-                    'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1000&auto=format&fit=crop',
-                    height: 160.h, width: double.infinity, fit: BoxFit.cover,
-                  ),
-                ),
-              ],
+            ClipRRect(
+              borderRadius: BorderRadius.circular(22.r),
+              child: Image.network(
+                'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1000&auto=format&fit=crop',
+                height: 160.h, width: double.infinity, fit: BoxFit.cover,
+              ),
             ),
             SizedBox(height: 14.h),
-            Text('Strategis to Ace the CPNS Exam', style: GoogleFonts.poppins(fontSize: 18.sp, fontWeight: FontWeight.w600)),
+            Text('Strategies to Ace the CPNS Exam', style: GoogleFonts.poppins(fontSize: 18.sp, fontWeight: FontWeight.w600)),
             SizedBox(height: 10.h),
             _buildBulletPoint('Tips for TWK, TIU, TKP'),
             _buildBulletPoint('Live Q&A session'),

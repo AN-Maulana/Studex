@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart'; // Import iconsax
 
 class CoachingDetailEnrolnow extends StatefulWidget {
   const CoachingDetailEnrolnow({super.key});
@@ -12,6 +13,9 @@ class CoachingDetailEnrolnow extends StatefulWidget {
 class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
   // State untuk melacak apakah user sudah enroll atau belum
   bool _isEnrolled = false;
+
+  // State untuk melacak apakah coaching ini di-save/bookmark atau tidak
+  bool _isSaved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +42,8 @@ class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildCircleButton(Icons.bookmark_border, () => Navigator.pop(context)),
+                        // TOMBOL SAVE (LOGIKA INTERAKTIF)
+                        _buildSaveButton(),
                         _buildTimeBadge('Today • 4:00 PM'),
                       ],
                     ),
@@ -82,7 +87,6 @@ class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
                             ),
                           ],
                         ),
-                        // Badge person hanya muncul jika sudah enroll
                         if (_isEnrolled) _buildPersonBadge('129'),
                       ],
                     ),
@@ -92,7 +96,7 @@ class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
                     Text(
                       'Strategis to Ace the CPNS Exam',
                       style: GoogleFonts.poppins(
-                        fontSize: 20.sp, // Ukuran font disesuaikan agar tidak terlalu besar
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.w600,
                         height: 1.2,
                       ),
@@ -131,6 +135,31 @@ class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
     );
   }
 
+  // Widget Tombol Save
+  Widget _buildSaveButton() {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          _isSaved = !_isSaved; 
+        });
+      },
+      borderRadius: BorderRadius.circular(50),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: EdgeInsets.all(8.w),
+        decoration: BoxDecoration(
+          color: _isSaved ? const Color(0xFF121212) : const Color(0xFFF4F4F4),
+          shape: BoxShape.circle,
+        ),
+        child: Icon(
+          _isSaved ? Iconsax.archive_15 : Iconsax.archive_add,
+          size: 18.sp,
+          color: _isSaved ? Colors.white : Colors.black,
+        ),
+      ),
+    );
+  }
+
   // Widget Tombol Enroll
   Widget _buildEnrollButton() {
     return SizedBox(
@@ -155,7 +184,7 @@ class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
     );
   }
 
-  // Widget Chat Input (Setelah Sukses)
+  // Widget Chat Input
   Widget _buildChatInput() {
     return Row(
       children: [
@@ -188,7 +217,6 @@ class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
     );
   }
 
-  // Tampilan "About" sebelum Enroll
   Widget _buildAboutSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -220,7 +248,6 @@ class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
     );
   }
 
-  // Tampilan "Learners" setelah Enroll
   Widget _buildLearnersList() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -234,7 +261,6 @@ class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
     );
   }
 
-  // Logic Klik Tombol
   void _onEnrollPressed() async {
     showDialog(
       context: context,
@@ -271,8 +297,6 @@ class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
       });
     }
   }
-
-  // --- HELPER WIDGETS ---
 
   Widget _buildSectionTitle(String title) {
     return Column(
@@ -325,18 +349,6 @@ class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
     );
   }
 
-  Widget _buildCircleButton(IconData icon, VoidCallback onTap) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(50),
-      child: Container(
-        padding: EdgeInsets.all(8.w),
-        decoration: const BoxDecoration(color: Color(0xFFF4F4F4), shape: BoxShape.circle),
-        child: Icon(icon, size: 18.sp),
-      ),
-    );
-  }
-
   Widget _buildTimeBadge(String text) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
@@ -367,29 +379,33 @@ class _CoachingDetailEnrolnowState extends State<CoachingDetailEnrolnow> {
 
   Widget _buildAvatarStack() {
     return Row(
-      children: List.generate(
-        3,
-        (i) => Transform.translate(
-          offset: Offset(-8.w * i, 0),
-          child: CircleAvatar(
-            radius: 18.r,
-            backgroundColor: Colors.white,
-            child: CircleAvatar(radius: 16.r, backgroundImage: const NetworkImage('https://i.pravatar.cc/150?img=5')),
-          ),
-        ),
-      )..add(
-          Transform.translate(
-            offset: Offset(-24.w, 0),
+      children: [
+        ...List.generate(
+          3,
+          (i) => Transform.translate(
+            offset: Offset(-8.w * i, 0),
             child: CircleAvatar(
               radius: 18.r,
-              backgroundColor: const Color(0xFFEEEEEE),
-              child: Text(
-                '120+',
-                style: GoogleFonts.poppins(fontSize: 9.sp, color: Colors.black, fontWeight: FontWeight.bold),
-              ),
+              backgroundColor: Colors.white,
+              child: CircleAvatar(
+                  radius: 16.r,
+                  backgroundImage: const NetworkImage('https://i.pravatar.cc/150?img=5')),
             ),
           ),
         ),
+        Transform.translate(
+          offset: Offset(-24.w, 0),
+          child: CircleAvatar(
+            radius: 18.r,
+            backgroundColor: const Color(0xFFEEEEEE),
+            child: Text(
+              '120+',
+              style: GoogleFonts.poppins(
+                  fontSize: 9.sp, color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

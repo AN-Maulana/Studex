@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart'; // Import iconsax untuk konsistensi
 
-class CoachingDetailScreen extends StatelessWidget {
+class CoachingDetailScreen extends StatefulWidget {
   const CoachingDetailScreen({super.key});
+
+  @override
+  State<CoachingDetailScreen> createState() => _CoachingDetailScreenState();
+}
+
+class _CoachingDetailScreenState extends State<CoachingDetailScreen> {
+  // State untuk melacak tombol bookmark/save
+  bool _isSaved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -22,20 +31,26 @@ class CoachingDetailScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          width: 42.w,
-                          height: 42.w,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                          ),
-                          child: IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: Icon(
-                              Icons.bookmark_border,
+                        // TOMBOL SAVE YANG INTERAKTIF
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              _isSaved = !_isSaved;
+                            });
+                          },
+                          borderRadius: BorderRadius.circular(50),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            width: 42.w,
+                            height: 42.w,
+                            decoration: BoxDecoration(
+                              color: _isSaved ? const Color(0xFF121212) : Colors.white,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              _isSaved ? Iconsax.archive_15 : Iconsax.archive_add,
                               size: 20.sp,
+                              color: _isSaved ? Colors.white : Colors.black,
                             ),
                           ),
                         ),

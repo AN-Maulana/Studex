@@ -3,10 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../core/constants/dummy_data.dart';
-import 'course_detail.dart'; 
+import 'course_detail.dart';
 
-class CourseAfterPremiumScreen extends StatelessWidget {
+class CourseAfterPremiumScreen extends StatefulWidget {
   const CourseAfterPremiumScreen({super.key});
+
+  @override
+  State<CourseAfterPremiumScreen> createState() => _CourseAfterPremiumScreenState();
+}
+
+class _CourseAfterPremiumScreenState extends State<CourseAfterPremiumScreen> {
+  // State untuk menyimpan status simpan
+  bool isSaved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +34,7 @@ class CourseAfterPremiumScreen extends StatelessWidget {
                   SizedBox(height: 20.h),
                   _buildCourseHero(course),
                   SizedBox(height: 16.h),
-                  _buildTopicsList(context), 
+                  _buildTopicsList(context),
                   SizedBox(height: 16.h),
                   _buildReviews(),
                 ],
@@ -52,21 +60,38 @@ class CourseAfterPremiumScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        _buildCircleButton(Iconsax.bookmark, () {}),
+        // Update: Tombol Save dengan logika warna
+        _buildCircleButton(
+          isSaved ? Iconsax.archive_15 : Iconsax.archive_add,
+          () {
+            setState(() {
+              isSaved = !isSaved;
+            });
+          },
+          iconColor: isSaved ? Colors.white : Colors.black,
+          bgColor: isSaved ? const Color(0xFF121212) : Colors.white,
+        ),
       ],
     );
   }
 
-  Widget _buildCircleButton(IconData icon, VoidCallback onTap) {
+  Widget _buildCircleButton(
+    IconData icon, 
+    VoidCallback onTap, {
+    Color iconColor = Colors.black,
+    Color bgColor = Colors.white,
+  }) {
     return InkWell(
       onTap: onTap,
-      child: Container(
+      borderRadius: BorderRadius.circular(50),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
         padding: EdgeInsets.all(12.w),
-        decoration: const BoxDecoration(
-          color: Colors.white,
+        decoration: BoxDecoration(
+          color: bgColor,
           shape: BoxShape.circle,
         ),
-        child: Icon(icon, size: 20.sp, color: Colors.black),
+        child: Icon(icon, size: 20.sp, color: iconColor),
       ),
     );
   }

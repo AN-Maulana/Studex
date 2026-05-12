@@ -100,13 +100,15 @@ class CourseScreen extends StatelessWidget {
                   right: 20.w,
                   bottom: 100.h,
                 ),
-                itemCount: DummyData.recommendedCourses.length,
+                // UBAH itemCount menjadi 3 untuk memaksakan muncul 3 box
+                // Jika data di DummyData kurang dari 3, ganti logic data index-nya
+                itemCount: 3, 
                 separatorBuilder: (context, index) => SizedBox(height: 16.h),
                 itemBuilder: (context, index) {
-                  final course = DummyData.recommendedCourses[index];
-                  final isPremium =
-                      index !=
-                      0; // Assuming index != 0 is premium based on previous dummy logic
+                  // Menggunakan modulo agar jika data dummy cuma 2, box ke-3 balik lagi ambil data index 0
+                  final course = DummyData.recommendedCourses[index % DummyData.recommendedCourses.length];
+                  final isPremium = index != 0; 
+
                   return GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -153,21 +155,16 @@ class CourseScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          // JARAK ATAS IMAGE (Diperkecil dari 16 ke 12 atau 10)
                           SizedBox(height: 12.h),
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(
-                              20.r,
-                            ), // Lebih round sesuai Figma
+                            borderRadius: BorderRadius.circular(20.r),
                             child: Image.asset(
                               course['image'],
-                              height: 130
-                                  .h, // Tinggi sedikit dikurangi agar proporsional
+                              height: 130.h,
                               width: double.infinity,
                               fit: BoxFit.cover,
                             ),
                           ),
-                          // JARAK BAWAH IMAGE (Diperkecil agar teks menempel proporsional)
                           SizedBox(height: 12.h),
                           Text(
                             course['title'],
@@ -175,8 +172,7 @@ class CourseScreen extends StatelessWidget {
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w500,
                               color: AppColors.black,
-                              height:
-                                  1.2, // Mengatur line height agar tidak terlalu renggang
+                              height: 1.2,
                             ),
                           ),
                           SizedBox(height: 4.h),
@@ -187,15 +183,12 @@ class CourseScreen extends StatelessWidget {
                               color: AppColors.textGrey,
                             ),
                           ),
-                          // JARAK MENUJU BOTTOM ROW
                           SizedBox(height: 12.h),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              // Avatar Stack
                               SizedBox(
-                                width: 70
-                                    .w, // Dipersempit agar tidak memakan tempat
+                                width: 70.w,
                                 height: 32.h,
                                 child: Stack(
                                   children: [
@@ -209,8 +202,7 @@ class CourseScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Positioned(
-                                      left: 18
-                                          .w, // Jarak tumpukan (overlap) diperkecil
+                                      left: 18.w,
                                       child: CircleAvatar(
                                         radius: 14.r,
                                         backgroundImage: NetworkImage(
@@ -237,7 +229,6 @@ class CourseScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              // Button Learn Now
                               Container(
                                 padding: EdgeInsets.symmetric(
                                   horizontal: 24.w,
